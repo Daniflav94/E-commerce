@@ -51,12 +51,23 @@ nav{
         position: absolute;
         height: 20px;
         box-sizing: border-box;
-        left: 18px;
-
-        span{
-          position: absolute;
-          left: 8px;
+          left: 18px;
           top: 4px;
+
+        .circulo{
+          background: var(--azul);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+        }
+
+        .texto{
+          position: absolute;
+          left: 6px;
+          top: 3px;
           font-weight: 600;
           font-size: 12px;
         }
