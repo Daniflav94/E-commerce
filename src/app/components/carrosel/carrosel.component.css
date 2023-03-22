@@ -27,4 +27,5 @@
 .botoes-controle button.ativo {
   background: var(--nav);
   cursor: default;
+  background: var(--azul);
 }
