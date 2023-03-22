@@ -1,0 +1,67 @@
+nav{
+  height: 60px;
+  width: 100vw;
+  background-color: var(--nav);
+  position: fixed;
+  box-sizing: border-box;
+
+  .logo{
+    width: 95px;
+    cursor: pointer;
+  }
+
+  ul{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  li{
+    list-style: none;
+
+    .barra-busca{
+      position: relative;
+
+      .busca{
+        border-radius: 20px;
+        width: 400px;
+        height: 18px;
+        background-color: transparent;
+        border: 1px solid var(--cinza1);
+        padding: 5px 15px;
+      }
+
+      .lupa{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 20px;
+        cursor: pointer;
+        }
+    }
+
+    .sacola{
+      position: relative;
+      cursor: pointer;
+
+      .qnt-sacola{
+        position: absolute;
+        height: 20px;
+        box-sizing: border-box;
+        left: 18px;
+
+        span{
+          position: absolute;
+          left: 7px;
+          top: 3px;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+}
+
