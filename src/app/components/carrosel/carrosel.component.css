@@ -11,13 +11,12 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  position: absolute;
-  top: 435px;
-  left: 600px;
+  background-color: whitesmoke;
+  padding-top: 8px;
 }
 
 .botoes-controle button {
-  background: #e4e4e4;
+  background: #cbcbcb;
   border: none;
   border-radius: 50%;
   cursor: pointer;

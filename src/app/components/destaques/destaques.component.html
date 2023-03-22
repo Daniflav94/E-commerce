@@ -1,0 +1,16 @@
+<h2>Destaques</h2>
+<div class="cards">
+  <mat-card class="card" *ngFor="let produto of destaques">
+    <img [src]="produto.fotos[0]" alt="Photo of a Shiba Inu" />
+    <mat-card-title>{{ produto.nome }}</mat-card-title>
+    <mat-card-content>
+      <span>{{ produto.valor }}</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button >
+        <img src="../../../assets/icons/sacola-de-compras (1).png">
+        <span>Quero Comprar</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

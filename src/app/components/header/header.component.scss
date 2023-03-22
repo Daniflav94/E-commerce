@@ -1,9 +1,10 @@
 nav{
   height: 60px;
-  width: 100vw;
+  width: 100%;
   background-color: var(--nav);
   position: fixed;
   box-sizing: border-box;
+  z-index: 3;
 
   .logo{
     width: 95px;
@@ -54,10 +55,10 @@ nav{
 
         span{
           position: absolute;
-          left: 7px;
-          top: 3px;
+          left: 8px;
+          top: 4px;
           font-weight: 600;
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
