@@ -5,4 +5,5 @@ export interface Produto {
   descricao: string;
   resumo: string;
   fotos: string[];
+  categoria: string;
 }
