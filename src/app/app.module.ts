@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { DestaquesComponent } from './components/destaques/destaques.component';
 import { NgxGlideModule } from 'ngx-glide';
+import { ProdutoComponent } from './pages/produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxGlideModule } from 'ngx-glide';
     HeaderComponent,
     HomeComponent,
     CarroselComponent,
-    DestaquesComponent
+    DestaquesComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,

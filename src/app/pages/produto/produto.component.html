@@ -1,0 +1,41 @@
+<div class="container">
+  <span class="caminho">/ {{produto.categoria}} / <strong>{{produto.nome}}</strong></span>
+  <div class="produto">
+    <section class="fotos">
+      <img [src]="foto" alt="" class="foto-principal">
+      <div class="outras-fotos">
+        <img [src]="produto.fotos[1]" >
+        <img [src]="produto.fotos[2]" >
+        <img [src]="produto.fotos[3]" >
+      </div>
+    </section>
+    <section class="infos">
+      <h1>{{produto.nome}}</h1>
+      <p>{{produto.resumo}}</p>
+      <span class="valor">{{produto.valor}}</span>
+      <div class="botoes">
+        <div>
+          <button class="btnMenos">-</button>
+          <span class="contador">1</span>
+          <button class="btnMais">+</button>
+        </div>
+        <button class="adicionar">
+          <img src="/assets/icons/sacola-de-compras.png">
+          <span>Adicionar à Sacola</span>
+        </button>
+      </div>
+      <hr>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Descrição
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{produto.descricao}}</p>
+      </mat-expansion-panel>
+      <hr>
+    </section>
+
+  </div>
+</div>
+

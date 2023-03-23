@@ -11,7 +11,7 @@
       </ng-template>
       <ng-container *ngFor="let produto of destaques" class="container">
         <div class="card">
-          <img [src]="produto.fotos[0]">
+          <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
           <span class="nome">{{ produto.nome }}</span>
           <span class="valor">{{ produto.valor }}</span>
           <button>

@@ -1,0 +1,138 @@
+.container{
+  margin: 160px 20px 30px 20px;
+  width: 100vw;
+
+}
+
+.caminho{
+  color: rgb(47, 47, 47);
+}
+
+.produto{
+  display: flex;
+  width: 100%;
+
+
+  .fotos{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .foto-principal{
+      width: 600px;
+    }
+
+    .outras-fotos{
+      img{
+        border: 1px solid rgb(232, 232, 232);
+        border-radius: 5px;
+        width: 120px;
+        height: 80px;
+        object-fit: contain;
+        margin-right: 8px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .infos{
+    width: 35%;
+
+
+    h1{
+      text-transform: lowercase;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    h1::first-letter{
+      text-transform: uppercase;
+
+    }
+
+    p{
+      color: rgb(59, 59, 59);
+      margin-bottom: 30px;
+    }
+
+    .valor{
+      font-size: 22px;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 30px;
+    }
+
+    .botoes{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+
+      div{
+        border: 1px solid rgb(189, 189, 189);
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .btnMenos, .btnMais{
+          border: none;
+          background-color: transparent;
+          font-size: 25px;
+          width: 35px;
+        }
+
+        .btnMenos:hover, .btnMais:hover{
+          background-color: rgba(238, 238, 238, 0.811);
+        }
+
+        .contador{
+          width: 35px;
+          text-align: center;
+        }
+      }
+
+      .adicionar{
+        border: none;
+        background-color: var(--nav);
+        color: aliceblue;
+        width: 70%;
+        height: 42px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+
+        img{
+          width: 17px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+hr{
+  margin: 5px 0;
+}
+
+.mat-expansion-panel{
+  background-color: transparent;
+}
+
+.mat-focus-indicator{
+  background: transparent;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
+
+.mat-expansion-panel-header-title{
+  font-size: 20px;
+  font-weight: 600;
+}
