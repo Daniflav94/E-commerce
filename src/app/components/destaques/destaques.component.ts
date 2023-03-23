@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
 import { Produto } from 'src/app/interfaces/produto';
 
 @Component({
@@ -7,6 +8,8 @@ import { Produto } from 'src/app/interfaces/produto';
   styleUrls: ['./destaques.component.scss']
 })
 export class DestaquesComponent {
+
+  @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
 
   destaques: Produto[] = [
     {

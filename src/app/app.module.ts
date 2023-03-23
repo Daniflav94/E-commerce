@@ -9,6 +9,7 @@ import { CarroselComponent } from './components/carrosel/carrosel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { DestaquesComponent } from './components/destaques/destaques.component';
+import { NgxGlideModule } from 'ngx-glide';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DestaquesComponent } from './components/destaques/destaques.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgxGlideModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

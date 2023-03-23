@@ -1,48 +1,71 @@
+.cont{
+  width: 95%;
+  margin: 0 auto;
+}
+
 h2 {
-  margin: 100px 0 0px 0;
-  font-weight: 500;
+  margin: 70px 0 0px 0;
+  font-weight: 400;
   text-align: center;
-  font-size: 27px;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
 }
 
-hr{
-  border: 0;
-  height: 2px;
-  width: 90%;
-  margin: 10px auto 50px auto;
-  background-image: linear-gradient(to right, transparent,var(--azul), transparent);
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &.custom-arrow-left {
+    left: 2.5%;
+  }
+
+  &.custom-arrow-right {
+    right: 2.5%;
+  }
 }
 
-.cards {
-  display: flex;
-  width: 100%;
-  margin: 0 30px;
-  justify-content: center;
+.btn-seta{
+  background-color: rgba(255, 255, 255, 0.435);
+  border: none;
+  width: 40px;
+  height: 50px;
+  padding: 5px;
+  opacity: 0.5;
+}
+
+.btn-seta:hover{
+  opacity: 1;
 }
 
 .card {
-  width: 300px;
-  height: 400px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-right: 10px;
   box-shadow: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
 
 
   img {
-    width: 300px;
+    width: 320px;
     cursor: pointer;
   }
 
-  mat-card-title {
+  .nome {
     font-size: 15px;
     color: rgb(116, 115, 115);
     text-align: start;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+
   }
 
-  mat-card-content {
+  .valor {
     font-weight: bold;
     font-size: 17px;
     padding: 0;
@@ -73,4 +96,8 @@ hr{
   button:hover {
     background-color: #4bbad6;
   }
+}
+
+.card:hover{
+  transform: scale(1.03);
 }

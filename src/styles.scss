@@ -1,4 +1,5 @@
-
+@use '@glidejs/glide/src/assets/sass/glide.core' as *;
+@use '@glidejs/glide/src/assets/sass/glide.theme' as *;
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -36,6 +37,7 @@ $e-commerce-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 @import './variaveis.css';
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Open+Sans:wght@300;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
