@@ -1,3 +1,98 @@
+.container{
+  width: 90%;
+  height: 85vh;
+  padding: 0;
+  margin: 0;
+}
+
+mat-drawer-container {
+  width: 105%;
+  height: 100%;
+  background-color: white;
+}
+
+mat-drawer {
+  padding: 20px;
+  width: 440px;
+}
+
+hr{
+  color: rgb(196, 196, 196);
+}
+
+h5{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.produto{
+  display: flex;
+  height: 130px;
+
+  img{
+    width: 130px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 10px;
+  }
+
+  .infos{
+    display: flex;
+    flex-direction: column;
+
+    .nome{
+      width: 200px;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      color: rgb(110, 110, 110);
+      margin-bottom: 10px;
+    }
+
+    .valor{
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .qnt{
+      width: 80px;
+
+      span{
+        font-size: 13px;
+        color: gray;
+      }
+
+      .btn-qnt{
+        border: 1px solid rgb(189, 189, 189);
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 28px;
+
+        .btnMenos, .btnMais{
+          border: none;
+          background-color: transparent;
+          font-size: 20px;
+          width: 23px;
+        }
+
+        .btnMenos:hover, .btnMais:hover{
+          background-color: rgba(238, 238, 238, 0.811);
+        }
+
+        .contador{
+          width: 23px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+
 nav{
   height: 60px;
   width: 100%;

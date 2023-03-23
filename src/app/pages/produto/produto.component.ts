@@ -14,7 +14,7 @@ export class ProdutoComponent {
     nome: "POP KEYS",
     resumo: "Teclado mecânico sem fio com teclas emoji personalizáveis",
     descricao: "Deixe a personalidade estourar na sua mesa e além com POP Keys. Junto com um mouse POP correspondente, deixe seu verdadeiro eu brilhar com uma estética de mesa impressionante e teclas de emoji personalizáveis e divertidas.",
-    valor: "R$764,90",
+    valor: 764.90,
     fotos: ["assets/img/pop-keys-gallery-daydream-1.webp", "assets/img/pop-keys-gallery-daydream-6.webp", "assets/img/pop-keys-gallery-daydream-2.webp", "assets/img/pop-keys-gallery-daydream-5.webp"],
     categoria: "Teclados"
   }
