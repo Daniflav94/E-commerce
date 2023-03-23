@@ -6,6 +6,15 @@
 
 .caminho{
   color: rgb(47, 47, 47);
+
+  span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.ativa{
+  opacity: 0.5;
 }
 
 .produto{
@@ -32,6 +41,7 @@
         object-fit: contain;
         margin-right: 8px;
         cursor: pointer;
+
       }
     }
   }
@@ -111,6 +121,10 @@
           width: 17px;
           margin-right: 10px;
         }
+      }
+
+      .adicionar:hover{
+        background-color: var(--azul);
       }
     }
   }

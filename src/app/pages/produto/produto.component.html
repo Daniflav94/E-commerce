@@ -1,12 +1,18 @@
 <div class="container">
-  <span class="caminho">/ {{produto.categoria}} / <strong>{{produto.nome}}</strong></span>
+  <span class="caminho">
+    /
+    <span>{{produto.categoria}}</span>
+    /
+    <strong> {{produto.nome}}</strong>
+  </span>
   <div class="produto">
     <section class="fotos">
       <img [src]="foto" alt="" class="foto-principal">
       <div class="outras-fotos">
-        <img [src]="produto.fotos[1]" >
-        <img [src]="produto.fotos[2]" >
-        <img [src]="produto.fotos[3]" >
+        <img [src]="produto.fotos[0]" (click)="trocarFoto(produto.fotos[0])" [ngClass]="{'ativa': foto != produto.fotos[0]}">
+        <img [src]="produto.fotos[1]" (click)="trocarFoto(produto.fotos[1])"[ngClass]="{'ativa': foto != produto.fotos[1]}">
+        <img [src]="produto.fotos[2]" (click)="trocarFoto(produto.fotos[2])"[ngClass]="{'ativa': foto != produto.fotos[2]}">
+        <img [src]="produto.fotos[3]" (click)="trocarFoto(produto.fotos[3])"[ngClass]="{'ativa': foto != produto.fotos[3]}">
       </div>
     </section>
     <section class="infos">
@@ -15,9 +21,9 @@
       <span class="valor">{{produto.valor}}</span>
       <div class="botoes">
         <div>
-          <button class="btnMenos">-</button>
-          <span class="contador">1</span>
-          <button class="btnMais">+</button>
+          <button class="btnMenos"(click)="subtrairQuantidade()">-</button>
+          <span class="contador">{{quantidadeProduto}}</span>
+          <button class="btnMais" (click)="somarQuantidade()">+</button>
         </div>
         <button class="adicionar">
           <img src="/assets/icons/sacola-de-compras.png">

@@ -23,11 +23,11 @@ export class DestaquesComponent {
     },
     {
       id: 2,
-      nome: "Teclado Mecânico Gamer Sem Fio Logitech G715 RGB LIGHTSYNC Com Switch GX Red Linear",
-      resumo: "Teclado Mecânico Gamer Sem Fio Logitech G715 RGB LIGHTSYNC Com Switch GX Red Linear",
-      descricao: "O teclado para jogos sem fio G715 é um teclado mecânico compacto, sem teclas numéricas que oferece digitação confortável e desempenho de alta qualidade. Expresse-se e jogue do seu jeito. Flutue com o visual cativante do G715 e apoio para as mãos confortável. Com layout TKL compacto e altura ajustável, você sente conforto durante o jogo o tempo inteiro. Conta também com LIGHTSYNC, que possibilita personalizar seu G715 com quatro modos diferentes de animações ou personalizar o visual da sua iluminação e dos efeitos de animação com cerca de 16,8 milhões de cores RGB programáveis usando o software G HUB.",
-      valor: "R$1399,00",
-      fotos: ["assets/img/teclado06.png"],
+      nome: "POP KEYS",
+      resumo: "Teclado mecânico sem fio com teclas emoji personalizáveis",
+      descricao: "Deixe a personalidade estourar na sua mesa e além com POP Keys. Junto com um mouse POP correspondente, deixe seu verdadeiro eu brilhar com uma estética de mesa impressionante e teclas de emoji personalizáveis e divertidas.",
+      valor: "R$764,90",
+      fotos: ["assets/img/pop-keys-gallery-daydream-1.webp", "assets/img/pop-keys-gallery-daydream-6.webp", "assets/img/pop-keys-gallery-daydream-2.webp"],
       categoria: "Teclados"
     },
     {

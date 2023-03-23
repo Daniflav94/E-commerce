@@ -62,7 +62,12 @@ h2 {
     text-align: start;
     margin-bottom: 10px;
     text-overflow: ellipsis;
+    text-transform: lowercase;
 
+  }
+
+  .nome::first-letter{
+    text-transform: uppercase;
   }
 
   .valor {

@@ -9,17 +9,33 @@ import { Produto } from 'src/app/interfaces/produto';
 export class ProdutoComponent {
 
   produto: Produto =
-    {
-      id: 3,
-      nome: "TECLADO BLUETOOTH K480 PARA VÁRIOS DISPOSITIVOS",
-      resumo: "Alterne entre seu computador, telefone e tablet",
-      descricao: "K480 é um teclado multi-dispositivo confortável e com economia de espaço que traz melhor digitação para seu laptop, tablet ou telefone. Com durabilidade impressionante e bateria de longa duração, esse design compacto é o que todos precisam para realizar várias tarefas e realizar mais (em qualquer lugar).",
-      valor: "R$305,90",
-      fotos: ["assets/img/bluetooth-multi-device-keboard-k480-_2__1.png", "assets/img/k480-gallery-black-2-new.webp", "assets/img/k480-gallery-black-4-new.webp", "assets/img/bluetooth-multi-device-keyboard-k480_1.png"],
-      categoria: "Teclados"
-    }
+  {
+    id: 2,
+    nome: "POP KEYS",
+    resumo: "Teclado mecânico sem fio com teclas emoji personalizáveis",
+    descricao: "Deixe a personalidade estourar na sua mesa e além com POP Keys. Junto com um mouse POP correspondente, deixe seu verdadeiro eu brilhar com uma estética de mesa impressionante e teclas de emoji personalizáveis e divertidas.",
+    valor: "R$764,90",
+    fotos: ["assets/img/pop-keys-gallery-daydream-1.webp", "assets/img/pop-keys-gallery-daydream-6.webp", "assets/img/pop-keys-gallery-daydream-2.webp", "assets/img/pop-keys-gallery-daydream-5.webp"],
+    categoria: "Teclados"
+  }
 
     foto: string = this.produto.fotos[0]
+    quantidadeProduto: number =  1
+
+    somarQuantidade() {
+      this.quantidadeProduto++
+    }
+
+    subtrairQuantidade() {
+      if(this.quantidadeProduto > 1){
+        this.quantidadeProduto--
+      }
+    }
+
+    trocarFoto(foto: string) {
+      this.foto = foto
+
+    }
 
 
 }
