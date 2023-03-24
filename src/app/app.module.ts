@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -11,7 +11,10 @@ import { MaterialModule } from './material/material.module';
 import { DestaquesComponent } from './components/destaques/destaques.component';
 import { NgxGlideModule } from 'ngx-glide';
 import { ProdutoComponent } from './pages/produto/produto.component';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,9 @@ import { ProdutoComponent } from './pages/produto/produto.component';
     MaterialModule,
     NgxGlideModule,
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,14 +6,14 @@
     <ngx-glide [arrowLeftTemplate]="arrowLeftTemplate" [arrowRightTemplate]="arrowRightTemplate" [perView]="4" [showBullets]="false">
       <ng-template #arrowLeftTemplate>
         <div class="custom-arrow custom-arrow-left">
-          <button class="btn-seta"><img src="../../../assets/icons/seta-esquerda.png" width="16px"></button>
+          <button class="btn-seta"><img src="/assets/icons/seta-esquerda.png" width="16px"></button>
         </div>
       </ng-template>
       <ng-container *ngFor="let produto of destaques" class="container">
         <div class="card">
           <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
           <span class="nome">{{ produto.nome }}</span>
-          <span class="valor">R$ {{ produto.valor }}</span>
+          <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
           <button>
             <img src="/assets/icons/sacola-de-compras.png">
             <span>Quero Comprar</span>
@@ -22,7 +22,7 @@
       </ng-container>
       <ng-template #arrowRightTemplate>
         <div class="custom-arrow custom-arrow-right">
-          <button class="btn-seta"><img src="../../../assets/icons/seta-direita.png" width="16px"></button>
+          <button class="btn-seta"><img src="/assets/icons/seta-direita.png" width="16px"></button>
         </div>
       </ng-template>
     </ngx-glide>
