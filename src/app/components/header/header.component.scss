@@ -1,40 +1,67 @@
 .container{
-  width: 90%;
-  height: 85vh;
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
 
-mat-drawer-container {
-  width: 105%;
-  height: 100%;
+.mat-drawer-container{
   background-color: white;
 }
 
-mat-drawer {
-  padding: 20px;
+section {
+  width: 98.8vw;
+  height: 87vh;
+  background-color: white;
+}
+
+mat-sidenav {
   width: 440px;
+  height: 100%;
+}
+
+mat-nav-list{
+  padding: 0;
+}
+
+.primeira-linha{
+  padding: 10px 0;
 }
 
 hr{
-  color: rgb(196, 196, 196);
+  opacity: 0.4;
+  width: 95%;
+  height: 1px;
 }
+
 
 h5{
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
+  padding: 20px 0 10px 20px;
+}
+
+.produtos{
+  height: 797px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-bottom: 5px;
 }
 
 .produto{
   display: flex;
-  height: 130px;
+  flex-wrap: wrap;
+  height: 150px;
+  padding: 0 10px;
+  box-sizing: border-box;
 
   img{
     width: 130px;
     height: 100px;
     object-fit: contain;
-    margin-right: 10px;
+    margin-right: 20px;
+
   }
 
   .infos{
@@ -65,7 +92,7 @@ h5{
       }
 
       .btn-qnt{
-        border: 1px solid rgb(189, 189, 189);
+        border: 1px solid rgb(206, 206, 206);
         width: auto;
         display: flex;
         align-items: center;
@@ -90,6 +117,31 @@ h5{
       }
     }
   }
+}
+
+.valor-total{
+  height: 40px;
+  padding: 10px;
+  font-size: 19px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-finalizar{
+  border: none;
+  background-color: var(--nav);
+  color: aliceblue;
+  height: 47px;
+  width: 100%;
+  margin-top: 5px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.btn-finalizar:hover{
+  background-color: var(--azul);
 }
 
 
@@ -123,7 +175,7 @@ nav{
       .busca{
         border-radius: 20px;
         width: 450px;
-        height: 28px;
+        height: 22px;
         background-color: transparent;
         border: 1px solid var(--cinza1);
         padding: 5px 15px;
@@ -148,24 +200,24 @@ nav{
         height: 20px;
         box-sizing: border-box;
         left: 18px;
-        top: 4px;
+        top: 0px;
 
         .circulo{
           background: var(--azul);
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            height: 19px;
-            width: 19px;
+            height: 20px;
+            width: 20px;
             position: absolute;
         }
 
         .texto{
           position: absolute;
           left: 6px;
-          top: 0px;
-          font-weight: 600;
-          font-size: 13px;
+          top: 1px;
+          font-weight: 500;
+          font-size: 14px;
         }
       }
     }

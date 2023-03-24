@@ -39,7 +39,7 @@ h2 {
 }
 
 .card {
-  height: 420px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +49,7 @@ h2 {
   overflow: hidden;
   border: none;
   border-radius: 0;
+  position: inherit;
 
 
   img {

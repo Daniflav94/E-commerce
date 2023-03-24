@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interfaces/produto';
 import { Sacola } from 'src/app/interfaces/sacola';
 
@@ -7,12 +7,17 @@ import { Sacola } from 'src/app/interfaces/sacola';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
+
+  ngOnInit(): void {
+    this.calcularTotal()
+  }
 
   pesquisa: boolean = false
   showFiller = false;
+  valorTotal: string = ""
 
-  produtos: Sacola[] = [{
+  produtosSacola: Sacola[] = [{
     produto: {
       id: 1,
       nome: "Teclado sem fio Logitech K480",
@@ -35,16 +40,29 @@ export class HeaderComponent {
       categoria: "Teclados"
     },
     quantidade: 2
-  }
+  },
   ]
+
+  calcularTotal() {
+    let total: number = 0
+    this.produtosSacola.forEach(produto => {
+      total += (produto.produto.valor * produto.quantidade)
+
+    this.valorTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
+    })
+  }
 
   somarQuantidade(produto: Sacola) {
     produto.quantidade++
+
+    this.calcularTotal()
   }
 
   subtrairQuantidade(produto: Sacola) {
     if(produto.quantidade > 1){
       produto.quantidade--
+
+      this.calcularTotal()
     }
   }
 

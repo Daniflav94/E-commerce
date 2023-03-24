@@ -1,8 +1,8 @@
 .item {
   background-size: cover;
   background-repeat: no-repeat;
-  height: 450px;
-  width: 100vw;
+  height: 530px;
+  width: 100%;
   transition: all 0.5s ease-in-out;
   position: relative;
 }
