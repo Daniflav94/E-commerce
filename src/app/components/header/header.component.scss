@@ -233,6 +233,11 @@ nav{
   box-sizing: border-box;
   z-index: 3;
 
+  a{
+    text-decoration: none;
+    color: rgb(31, 31, 31);
+  }
+
   ul{
     display: flex;
     width: 100%;

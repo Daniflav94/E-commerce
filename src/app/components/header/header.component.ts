@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit{
   valorTotal: string = ""
 
   produtosSacola: Sacola[] = [{
+    id: 1,
     produto: {
       id: 1,
       nome: "Teclado sem fio Logitech K480",
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit{
     quantidade: 1
   },
   {
+    id: 2,
     produto: {
       id: 2,
       nome: "POP KEYS",
@@ -59,10 +61,10 @@ export class HeaderComponent implements OnInit{
   }
 
   subtrairQuantidade(produto: Sacola) {
-    if(produto.quantidade > 1){
+    if(produto.quantidade > 0){
       produto.quantidade--
-
       this.calcularTotal()
+
     }
   }
 

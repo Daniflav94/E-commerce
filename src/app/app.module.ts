@@ -13,6 +13,7 @@ import { NgxGlideModule } from 'ngx-glide';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -22,7 +23,8 @@ registerLocaleData(ptBr);
     HomeComponent,
     CarroselComponent,
     DestaquesComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,
