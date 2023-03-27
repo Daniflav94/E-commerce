@@ -43,7 +43,7 @@ h5{
 }
 
 .produtos{
-  height: 797px;
+  height: 778px;
   overflow-y: auto;
   box-sizing: border-box;
   margin-bottom: 5px;
@@ -120,10 +120,14 @@ h5{
 }
 
 .valor-total{
-  height: 40px;
-  padding: 10px;
-  font-size: 19px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 18px;
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
 .btn-finalizar{

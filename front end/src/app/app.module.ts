@@ -15,6 +15,7 @@ import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -25,7 +26,8 @@ registerLocaleData(ptBr);
     CarroselComponent,
     DestaquesComponent,
     ProdutoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    LancamentosComponent
   ],
   imports: [
     BrowserModule,
