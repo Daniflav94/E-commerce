@@ -5,7 +5,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 @Component({
   selector: 'app-lancamentos',
   templateUrl: './lancamentos.component.html',
-  styleUrls: ['./lancamentos.component.css']
+  styleUrls: ['./lancamentos.component.scss']
 })
 export class LancamentosComponent implements OnInit{
 
