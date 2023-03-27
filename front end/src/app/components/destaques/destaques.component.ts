@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
 import { Produto } from 'src/app/interfaces/produto';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-destaques',
@@ -10,6 +11,17 @@ import { Produto } from 'src/app/interfaces/produto';
 export class DestaquesComponent {
 
   @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
+
+  constructor(
+    private produtoService: ProdutoService
+  ){}
+
+
+  listarProdutos():void {
+    this.produtoService.listarDestaques().subscribe(lista => {
+      
+    })
+  }
 
   destaques: Produto[] = [
     {
@@ -214,9 +226,5 @@ export class DestaquesComponent {
       categoria: "Teclados"
     },
   ]
-
-
-
-
 
 }

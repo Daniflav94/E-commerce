@@ -31,4 +31,40 @@ export class ProdutoService {
       })
     )
   }
+
+  listarDestaques() {
+    return this.httpClient.get<Produto[]>(`${this.API}/destaques`).pipe(
+      catchError(error => {
+        console.error(error)
+        return EMPTY
+      })
+    )
+  }
+
+  listarNovidades() {
+    return this.httpClient.get<Produto[]>(`${this.API}/novidades`).pipe(
+      catchError(error => {
+        console.error(error)
+        return EMPTY
+      })
+    )
+  }
+
+  listarPorCategoria(categoria: string) {
+    return this.httpClient.get<Produto[]>(`${this.API}/${categoria}`).pipe(
+      catchError(error => {
+        console.error(error)
+        return EMPTY
+      })
+    )
+  }
+
+  buscarPorNome(pesquisa: string) {
+    return this.httpClient.get<Produto[]>(`${this.API}/${pesquisa}`).pipe(
+      catchError(error => {
+        console.error(error)
+        return EMPTY
+      })
+    )
+  }
 }

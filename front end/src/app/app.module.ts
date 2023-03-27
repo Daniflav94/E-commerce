@@ -14,6 +14,7 @@ import { ProdutoComponent } from './pages/produto/produto.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -32,6 +33,7 @@ registerLocaleData(ptBr);
     BrowserAnimationsModule,
     MaterialModule,
     NgxGlideModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
