@@ -91,6 +91,7 @@ h2 {
     left: 0;
     cursor: pointer;
     color: aliceblue;
+    visibility: hidden;
 
     img {
       width: 17px;
@@ -98,12 +99,13 @@ h2 {
     }
   }
 
-
-  button:hover {
-    background-color: #4bbad6;
-  }
 }
 
 .card:hover{
   transform: scale(1.03);
+
+  button {
+    visibility: visible;
+
+  }
 }
