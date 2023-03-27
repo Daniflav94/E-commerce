@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -36,6 +37,7 @@ registerLocaleData(ptBr);
     MaterialModule,
     NgxGlideModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

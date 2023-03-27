@@ -184,15 +184,21 @@ nav{
         border: 1px solid var(--cinza1);
         padding: 5px 15px;
         font-size: 14px;
+        color: aliceblue;
       }
 
-      .lupa{
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        width: 20px;
-        cursor: pointer;
-        }
+      button{
+        border: none;
+        background-color: transparent;
+
+        .lupa{
+          position: absolute;
+          top: 5px;
+          right: 20px;
+          width: 20px;
+          cursor: pointer;
+          }
+      }
     }
 
     .sacola{
@@ -260,4 +266,101 @@ nav{
     color: var(--azul);
   }
 }
+
+.conteudo-pesquisa{
+  margin: 130px 50px 50px 50px;
+
+  .titulo{
+    padding-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+
+    h1{
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+  }
+
+  .pesquisa{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    .produto-pesquisa {
+      height: 450px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 15px;
+      box-shadow: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: none;
+      border-radius: 0;
+      position: inherit;
+
+
+      img {
+        width: 320px;
+        cursor: pointer;
+      }
+
+      .nome {
+        font-size: 15px;
+        color: rgb(116, 115, 115);
+        text-align: start;
+        margin-bottom: 10px;
+        text-overflow: ellipsis;
+        text-transform: lowercase;
+
+      }
+
+      .nome::first-letter{
+        text-transform: uppercase;
+      }
+
+      .valor {
+        font-weight: bold;
+        font-size: 17px;
+        padding: 0;
+      }
+
+
+      button {
+        width: 100%;
+        background-color: var(--nav);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        height: 35px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        cursor: pointer;
+        color: aliceblue;
+        visibility: hidden;
+
+        img {
+          width: 17px;
+          margin-right: 5px;
+        }
+      }
+
+    }
+
+    .produto-pesquisa:hover{
+      transform: scale(1.05);
+
+      button {
+        visibility: visible;
+
+      }
+    }
+  }
+}
+
 

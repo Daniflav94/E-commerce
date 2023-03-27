@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
 import { Sacola } from 'src/app/interfaces/sacola';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,15 @@ export class HeaderComponent implements OnInit{
   }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private produtoService: ProdutoService
   ){}
 
   pesquisa: boolean = false
   showFiller = false;
   valorTotal: string = ""
+  produtosPesquisa: Produto[] = []
+  nomePesquisa: string = ""
 
   produtosSacola: Sacola[] = [{
     id: 1,
@@ -78,5 +82,12 @@ export class HeaderComponent implements OnInit{
     this.router.navigateByUrl('home', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/categorias/' + categoria]);
   });
+  }
+
+  pesquisar() {
+    this.pesquisa = true
+    this.produtoService.buscarPorNome(this.nomePesquisa).subscribe(lista => {
+      this.produtosPesquisa = lista
+    })
   }
 }
