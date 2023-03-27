@@ -1,7 +1,9 @@
 .item {
   background-size: cover;
   background-repeat: no-repeat;
-  height: 530px;
+  background-position: center;
+  max-height: 600px;
+  min-height: 450px;
   width: 100%;
   transition: all 0.5s ease-in-out;
   position: relative;
