@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
 import { Sacola } from 'src/app/interfaces/sacola';
 
@@ -12,6 +13,10 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     this.calcularTotal()
   }
+
+  constructor(
+    private router: Router
+  ){}
 
   pesquisa: boolean = false
   showFiller = false;
@@ -68,4 +73,10 @@ export class HeaderComponent implements OnInit{
     }
   }
 
+  atualizar(categoria: string){
+    //window.location.replace('/lista/' + idLista)
+    this.router.navigateByUrl('home', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/categorias/' + categoria]);
+  });
+  }
 }

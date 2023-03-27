@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
@@ -8,7 +8,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
   templateUrl: './destaques.component.html',
   styleUrls: ['./destaques.component.scss']
 })
-export class DestaquesComponent {
+export class DestaquesComponent implements OnInit{
 
   @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
 
@@ -16,10 +16,14 @@ export class DestaquesComponent {
     private produtoService: ProdutoService
   ){}
 
+  ngOnInit(): void {
+    this.listarProdutos()
+  }
+
 
   listarProdutos():void {
     this.produtoService.listarDestaques().subscribe(lista => {
-      
+      this.destaques  = lista
     })
   }
 
