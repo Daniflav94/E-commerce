@@ -20,7 +20,10 @@
           </div>
         </div>
       </div>
-      <span class="valor-total">Total: {{valorTotal}}</span>
+      <div class="valor-total">
+        <span>Total:</span>
+        <span>{{valorTotal}}</span>
+      </div>
       <button class="btn-finalizar">Finalizar compra</button>
     </mat-nav-list>
   </mat-sidenav>
@@ -33,10 +36,10 @@
         </a>
       </li>
       <li>
-        <div class="barra-busca">
-          <input type="text" class="busca" placeholder="Buscar produtos">
-          <img src="/assets/icons/lupa.png" class="lupa">
-        </div>
+        <form class="barra-busca">
+          <input type="text" class="busca" placeholder="Buscar produtos" name="nomePesquisa" [(ngModel)]="nomePesquisa">
+          <button type="submit" (click)="pesquisar()"><img src="/assets/icons/lupa.png" class="lupa"></button>
+        </form>
       </li>
       <li>
         <div class="sacola" (click)="drawer.toggle()">
@@ -51,16 +54,31 @@
 
     <div class="categorias mat-elevation-z4">
       <ul>
-        <a [routerLink]="'/categorias/' + 'teclados' "><li>TECLADOS</li></a>
-        <a [routerLink]="'/categorias/' + 'mouses' "><li>MOUSES</li></a>
-        <a [routerLink]="'/categorias/' + 'webcams' "><li>WEBCAMS</li></a>
-        <a [routerLink]="'/categorias/' + 'audio' "><li>ÁUDIO</li></a>
+        <a [routerLink]="'/categorias/' + 'teclados' " (click)="atualizar('teclados')"><li>TECLADOS</li></a>
+        <a [routerLink]="'/categorias/' + 'mouses' "(click)="atualizar('mouses')"><li>MOUSES</li></a>
+        <a [routerLink]="'/categorias/' + 'webcams' "(click)="atualizar('webcams')"><li>WEBCAMS</li></a>
+        <a [routerLink]="'/categorias/' + 'audio' "(click)="atualizar('audio')"><li>ÁUDIO</li></a>
       </ul>
     </div>
   </nav>
   <section>
     <main class="container" *ngIf="pesquisa">
-
+      <div class="conteudo-pesquisa">
+        <div class="titulo">
+          <h1>{{produtosPesquisa.length}} resultados encontrados para {{nomePesquisa}}</h1>
+        </div>
+        <div class="pesquisa">
+          <div class="produto-pesquisa" *ngFor="let produto of produtosPesquisa">
+              <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
+              <span class="nome">{{ produto.nome }}</span>
+              <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
+              <button>
+                <img src="/assets/icons/sacola-de-compras.png">
+                <span>Quero Comprar</span>
+              </button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <div class="container" *ngIf="!pesquisa">

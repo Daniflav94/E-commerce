@@ -18,7 +18,7 @@
     <section class="infos">
       <h1>{{produto.nome}}</h1>
       <p>{{produto.resumo}}</p>
-      <span class="valor">R$ {{produto.valor  | currency : 'BRL'}}</span>
+      <span class="valor">{{produto.valor  | currency : 'BRL'}}</span>
       <div class="botoes">
         <div>
           <button class="btnMenos"(click)="subtrairQuantidade()">-</button>

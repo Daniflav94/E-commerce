@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.scss']
 })
-export class ProdutoComponent {
+export class ProdutoComponent implements OnInit{
+
+  constructor(
+    private route: ActivatedRoute,
+    private produtoService: ProdutoService
+  ){}
+
+  ngOnInit(): void {
+    this.inicializarProduto()
+  }
 
   produto: Produto =
   {
@@ -21,6 +32,13 @@ export class ProdutoComponent {
 
     foto: string = this.produto.fotos[0]
     quantidadeProduto: number =  1
+
+    inicializarProduto():void {
+      const idProduto = this.route.snapshot.params["id"]
+      this.produtoService.buscarPorId(idProduto).subscribe(produto => {
+        this.produto = produto
+      })
+    }
 
     somarQuantidade() {
       this.quantidadeProduto++

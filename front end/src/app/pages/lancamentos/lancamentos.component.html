@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="header">
+    <h1>Lançamentos</h1>
+  <p>Confira nossas últimas novidades:</p>
+  </div>
+  <div class="produtos">
+    <div class="produto" *ngFor="let produto of lancamentos">
+        <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
+        <span class="nome">{{ produto.nome }}</span>
+        <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
+        <button>
+          <img src="/assets/icons/sacola-de-compras.png">
+          <span>Quero Comprar</span>
+        </button>
+    </div>
+  </div>
+
+</div>

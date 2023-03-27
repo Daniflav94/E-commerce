@@ -14,6 +14,9 @@ import { ProdutoComponent } from './pages/produto/produto.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -24,7 +27,8 @@ registerLocaleData(ptBr);
     CarroselComponent,
     DestaquesComponent,
     ProdutoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    LancamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ registerLocaleData(ptBr);
     BrowserAnimationsModule,
     MaterialModule,
     NgxGlideModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

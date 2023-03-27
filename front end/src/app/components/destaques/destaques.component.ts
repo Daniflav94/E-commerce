@@ -1,15 +1,31 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
 import { Produto } from 'src/app/interfaces/produto';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-destaques',
   templateUrl: './destaques.component.html',
   styleUrls: ['./destaques.component.scss']
 })
-export class DestaquesComponent {
+export class DestaquesComponent implements OnInit{
 
   @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
+
+  constructor(
+    private produtoService: ProdutoService
+  ){}
+
+  ngOnInit(): void {
+    this.listarProdutos()
+  }
+
+
+  listarProdutos():void {
+    this.produtoService.listarDestaques().subscribe(lista => {
+      this.destaques  = lista
+    })
+  }
 
   destaques: Produto[] = [
     {
@@ -214,9 +230,5 @@ export class DestaquesComponent {
       categoria: "Teclados"
     },
   ]
-
-
-
-
 
 }
