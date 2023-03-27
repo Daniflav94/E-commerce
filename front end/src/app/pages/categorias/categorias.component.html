@@ -1,1 +1,17 @@
-<p>categorias works!</p>
+<div class="container">
+  <div class="header">
+    <p>{{produtos.length}} produtos</p>
+  </div>
+  <div class="produtos">
+    <div class="produto" *ngFor="let produto of produtos">
+        <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
+        <span class="nome">{{ produto.nome }}</span>
+        <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
+        <button>
+          <img src="/assets/icons/sacola-de-compras.png">
+          <span>Quero Comprar</span>
+        </button>
+    </div>
+  </div>
+
+</div>
