@@ -90,4 +90,9 @@ export class HeaderComponent implements OnInit{
       this.produtosPesquisa = lista
     })
   }
+
+  desabilitarPesquisa() {
+    this.pesquisa = false
+    this.nomePesquisa = ''
+  }
 }

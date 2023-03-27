@@ -6,7 +6,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.css']
+  styleUrls: ['./categorias.component.scss']
 })
 export class CategoriasComponent implements OnInit{
 
@@ -19,13 +19,13 @@ export class CategoriasComponent implements OnInit{
     this.inicializarCategoria()
   }
 
-  lista: Produto[] = []
+  produtos: Produto[] = []
 
   inicializarCategoria():void {
     const categoria  = this.route.snapshot.params["categoria"]
     console.log(categoria)
     this.produtoService.listarPorCategoria(categoria).subscribe(lista => {
-      this.lista = lista
+      this.produtos = lista
     })
   }
 
