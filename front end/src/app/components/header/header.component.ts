@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
 import { Sacola } from 'src/app/interfaces/sacola';
 import { ProdutoService } from 'src/app/services/produto.service';
@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private route: ActivatedRoute
   ){}
 
   pesquisa: boolean = false
@@ -84,9 +85,10 @@ export class HeaderComponent implements OnInit{
   });
   }
 
-  pesquisar() {
+  pesquisar(busca: string) {
     this.pesquisa = true
-    this.produtoService.buscarPorNome(this.nomePesquisa).subscribe(lista => {
+    console.log("evento chamado")
+    this.produtoService.buscarPorNome(busca).subscribe(lista => {
       this.produtosPesquisa = lista
     })
   }

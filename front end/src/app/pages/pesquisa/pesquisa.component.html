@@ -1,0 +1,16 @@
+<div class="conteudo-pesquisa">
+  <div class="titulo">
+    <h1>{{produtosPesquisa.length}} resultados encontrados para {{nomePesquisa}}</h1>
+  </div>
+  <div class="pesquisa">
+    <div class="produto-pesquisa" *ngFor="let produto of produtosPesquisa">
+        <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
+        <span class="nome">{{ produto.nome }}</span>
+        <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
+        <button>
+          <img src="/assets/icons/sacola-de-compras.png">
+          <span>Quero Comprar</span>
+        </button>
+    </div>
+  </div>
+</div>

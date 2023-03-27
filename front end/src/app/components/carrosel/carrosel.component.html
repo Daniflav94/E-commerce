@@ -1,9 +1,9 @@
-<div
+<a [routerLink]="'/' + banners[indexImagemAtiva].rota" class="item"><div
   class="item"
   [style.backgroundImage]="
     'url(' + imagens[indexImagemAtiva] + ')'
   "
-></div>
+></div></a>
 <div class="botoes-controle">
   <button *ngFor="let imagem of imagens; index as i" [class.ativo]="i === indexImagemAtiva"
       (click)="pararTimer(); ativarImagem(i)"></button>

@@ -38,7 +38,7 @@
       <li>
         <form class="barra-busca">
           <input type="text" class="busca" placeholder="Buscar produtos" name="nomePesquisa" [(ngModel)]="nomePesquisa">
-          <button type="submit" (click)="pesquisar()"><img src="/assets/icons/lupa.png" class="lupa"></button>
+          <a [routerLink]="'pesquisa/' + nomePesquisa"><button type="submit" (click)="pesquisar(nomePesquisa)" ><img src="/assets/icons/lupa.png" class="lupa"></button></a>
         </form>
       </li>
       <li>
@@ -63,22 +63,7 @@
   </nav>
   <section>
     <main class="container" *ngIf="pesquisa">
-      <div class="conteudo-pesquisa">
-        <div class="titulo">
-          <h1>{{produtosPesquisa.length}} resultados encontrados para {{nomePesquisa}}</h1>
-        </div>
-        <div class="pesquisa">
-          <div class="produto-pesquisa" *ngFor="let produto of produtosPesquisa">
-              <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
-              <span class="nome">{{ produto.nome }}</span>
-              <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
-              <button>
-                <img src="/assets/icons/sacola-de-compras.png">
-                <span>Quero Comprar</span>
-              </button>
-          </div>
-        </div>
-      </div>
+      <app-pesquisa [produtosPesquisa]="produtosPesquisa" [nomePesquisa]="nomePesquisa" ></app-pesquisa>
     </main>
 
     <div class="container" *ngIf="!pesquisa">
