@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
+import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 
 const rotas: Routes = [
@@ -26,6 +28,14 @@ const rotas: Routes = [
   {
     path: 'lancamentos',
     component: LancamentosComponent
+  },
+  {
+    path: 'pesquisa/:pesquisa',
+    component: PesquisaComponent
+  },
+  {
+    path: 'finalizarCompra',
+    component: FinalizarCompraComponent
   }
 ];
 

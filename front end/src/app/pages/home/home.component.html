@@ -1,25 +1,28 @@
-
-<div class="container">
-  <app-carrosel></app-carrosel>
-  <div class="info">
-    <h5>Loja oficial de revenda dos produtos Logitech</h5>
-    <div>
-      <div class="frete">
-        <img src="/assets/icons/caminhao-de-entrega.png" width="25px">
-        <span>frete grátis* acima de R$200,00</span>
+<app-header>
+  <ng-container >
+    <div class="container">
+      <app-carrosel></app-carrosel>
+      <div class="info">
+        <h5>Loja oficial de revenda dos produtos Logitech</h5>
+        <div>
+          <div class="frete">
+            <img src="/assets/icons/caminhao-de-entrega.png" width="25px">
+            <span>frete grátis* acima de R$200,00</span>
+          </div>
+          <img src="../../../assets/icons/linha.png" width="40px">
+          <div class="parcelamento">
+            <img src="/assets/icons/cartao-de-credito.png" width="25px">
+            <span>até 10x sem juros</span>
+          </div>
+          <img src="../../../assets/icons/linha.png" width="40px">
+          <div class="cupom">
+            <img src="/assets/icons/desconto.png" width="25px">
+            <span>15% off na 1ª compra</span>
+          </div>
+        </div>
       </div>
-      <img src="../../../assets/icons/linha.png" width="40px">
-      <div class="parcelamento">
-        <img src="/assets/icons/cartao-de-credito.png" width="25px">
-        <span>até 10x sem juros</span>
-      </div>
-      <img src="../../../assets/icons/linha.png" width="40px">
-      <div class="cupom">
-        <img src="/assets/icons/desconto.png" width="25px">
-        <span>15% off na 1ª compra</span>
-      </div>
+      <app-destaques></app-destaques>
     </div>
-  </div>
-  <app-destaques></app-destaques>
-</div>
+  </ng-container>
+</app-header>
 

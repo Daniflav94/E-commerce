@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
+import { Banner } from 'src/app/interfaces/banner';
 
 @Component({
   selector: 'app-carrosel',
@@ -8,6 +9,7 @@ import { Subscription, timer } from 'rxjs';
 })
 export class CarroselComponent {
 
+  banners: Banner[] = [{imagem: "/assets/img/banner-1.jpg", rota: "/lancamentos"}, {imagem: "/assets/img/banner-2.jpg", rota: "/pesquisa/Webcam full hd logitech brio 300"}, {imagem:"/assets/img/banner-3.jpg", rota: "/pesquisa/Headset com fio usb logitech h390"}]
   imagens: string[] = ["/assets/img/banner-1.jpg", "/assets/img/banner-2.jpg", "/assets/img/banner-3.jpg"]
    // Guarda a referência do temporizador.
   // Assim conseguimos interromper o temporizador
