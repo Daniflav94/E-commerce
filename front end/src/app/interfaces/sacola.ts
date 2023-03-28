@@ -5,4 +5,5 @@ export interface Sacola {
   produto: Produto;
   quantidade: number;
   selecionado?: boolean;
+  valorTotal: number;
 }

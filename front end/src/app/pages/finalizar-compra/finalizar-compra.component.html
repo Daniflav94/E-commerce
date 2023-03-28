@@ -1,0 +1,99 @@
+<nav class="desktop mat-elevation-z4">
+  <ul>
+    <li>
+      <a routerLink="/home" >
+        <img src="/assets/img/devs-logo-branco.png" class="logo">
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <div class="info bloco">
+    <div class="titulo">
+      <img src="/assets/icons/user.png" width="18px">
+      <h5>Informações pessoais</h5>
+    </div>
+    <p>Solicitamos apenas informações essenciais</p>
+    <form>
+      <div>
+        <label for="email">E-mail</label>
+        <input type="email" name="email">
+      </div>
+      <div class="dual-input">
+        <div>
+          <label for="nome">Primeiro Nome</label>
+          <input type="text" name="nome">
+        </div>
+        <div>
+          <label for="sobrenome">Último Nome</label>
+          <input type="text" name="sobrenome">
+        </div>
+      </div>
+      <div class="dual-input">
+        <div>
+          <label for="">Gênero</label>
+          <select>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+          </select>
+        </div>
+        <div>
+          <label for="data">Data de Nasscimento</label>
+          <input type="date" name="data">
+        </div>
+      </div>
+      <div class="dual-input">
+        <div>
+          <label for="cpf">CPF</label>
+          <input type="text" name="cpf">
+        </div>
+        <div>
+          <label for="telefone">Telefone</label>
+          <input type="number" name="telefone">
+        </div>
+      </div>
+      <button type="submit">Ir para a Entrega</button>
+    </form>
+  </div>
+  <div class="entrega-pagamento">
+    <div class="entrega bloco">
+      <div class="titulo">
+        <img src="/assets/icons/home.png" width="18px">
+        <h5>Entrega</h5>
+      </div>
+      <p>Aguardando o preenchimento dos dados</p>
+    </div>
+
+    <div class="pagamento bloco">
+      <div class="titulo">
+        <img src="/assets/icons/cartao-do-banco.png" width="18px">
+        <h5>Pagamento</h5>
+      </div>
+      <p>Aguardando o preenchimento dos dados</p>
+    </div>
+  </div>
+
+  <div class="resumo bloco">
+    <div class="titulo">
+      <img src="/assets/icons/sacola-de-compras (1).png" width="18px">
+      <h5>Resumo da compra</h5>
+    </div>
+    <div class="produtos">
+      <div class="produto" *ngFor="let produto of produtosSacola">
+        <img [src]="produto.produto.fotos[0]">
+        <div class="infos">
+          <span class="nome">{{produto.produto.nome}}</span>
+          <div class="qnt">
+            <span>Quantidade: {{produto.quantidade}}</span>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="valor-total">
+        <span>Total:</span>
+        <span>{{valorTotal}}</span>
+      </div>
+    </div>
+
+  </div>
+

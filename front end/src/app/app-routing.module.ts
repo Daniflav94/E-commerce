@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
@@ -31,6 +32,10 @@ const rotas: Routes = [
   {
     path: 'pesquisa/:pesquisa',
     component: PesquisaComponent
+  },
+  {
+    path: 'finalizarCompra',
+    component: FinalizarCompraComponent
   }
 ];
 

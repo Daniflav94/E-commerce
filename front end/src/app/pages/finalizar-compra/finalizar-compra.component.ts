@@ -1,32 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Produto } from 'src/app/interfaces/produto';
 import { Sacola } from 'src/app/interfaces/sacola';
-import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-finalizar-compra',
+  templateUrl: './finalizar-compra.component.html',
+  styleUrls: ['./finalizar-compra.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class FinalizarCompraComponent implements OnInit {
 
   ngOnInit(): void {
     this.calcularTotal()
   }
 
-  constructor(
-    private router: Router,
-    private produtoService: ProdutoService,
-    private route: ActivatedRoute
-  ){}
-
-  pesquisa: boolean = false
-  showFiller = false;
   valorTotal: string = ""
-  produtosPesquisa: Produto[] = []
-  nomePesquisa: string = ""
-
   produtosSacola: Sacola[] = [{
     id: 1,
     produto: {
@@ -54,7 +40,6 @@ export class HeaderComponent implements OnInit{
     },
     quantidade: 2,
     valorTotal: 0
-
   },
   ]
 
@@ -67,36 +52,4 @@ export class HeaderComponent implements OnInit{
     })
   }
 
-  somarQuantidade(produto: Sacola) {
-    produto.quantidade++
-
-    this.calcularTotal()
-  }
-
-  subtrairQuantidade(produto: Sacola) {
-    if(produto.quantidade > 0){
-      produto.quantidade--
-      this.calcularTotal()
-
-    }
-  }
-
-  atualizar(categoria: string){
-    this.router.navigateByUrl('home', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/categorias/' + categoria]);
-  });
-  }
-
-  pesquisar(busca: string) {
-    this.pesquisa = true
-    console.log("evento chamado")
-    this.produtoService.buscarPorNome(busca).subscribe(lista => {
-      this.produtosPesquisa = lista
-    })
-  }
-
-  desabilitarPesquisa() {
-    this.pesquisa = false
-    this.nomePesquisa = ''
-  }
 }

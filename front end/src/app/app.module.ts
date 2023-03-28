@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { FormsModule } from '@angular/forms';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
+import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -30,7 +31,8 @@ registerLocaleData(ptBr);
     ProdutoComponent,
     CategoriasComponent,
     LancamentosComponent,
-    PesquisaComponent
+    PesquisaComponent,
+    FinalizarCompraComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,164 @@
+nav {
+  height: 60px;
+  width: 100vw;
+  background-color: var(--nav);
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 3;
+
+  .logo {
+    width: 95px;
+    cursor: pointer;
+  }
+
+  ul {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.container {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  background-color: whitesmoke;
+  width: 100vw;
+  height: 93vh;
+
+  .bloco {
+    background-color: rgba(255, 252, 252, 0.999);
+    height: auto;
+    min-width: 380px;
+    border-radius: 3px;
+    border: 1px solid rgb(234, 232, 232);
+    padding: 20px;
+  }
+
+  .info,
+  .entrega-pagamento,
+  .resumo {
+    margin: 40px 15px;
+  }
+
+  .entrega {
+    margin-bottom: 15px;
+  }
+
+  .info{
+    height: 380px;
+  }
+
+  .resumo{
+    .produtos{
+      max-height: 580px;
+      overflow: auto;
+      width: 370px;
+
+      .produto{
+        display: flex;
+
+        img{
+          width: 100px;
+        }
+      }
+    }
+  }
+
+  .titulo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h5 {
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+    }
+
+    img {
+      margin-right: 15px;
+    }
+
+  }
+
+  p {
+    font-size: 13.5px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+  }
+
+  form{
+    margin-top: 20px;
+
+    div{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+
+      label{
+        font-size: 13px;
+        color: rgb(98, 98, 98);
+        margin-bottom: 4px;
+      }
+
+      input{
+        border: 1px solid rgb(223, 221, 221);
+        border-radius: 3px;
+        height: 10px;
+        padding: 10px;
+      }
+
+      input:focus{
+        outline: none;
+      }
+
+      select{
+        height: 32px;
+        border: 1px solid rgb(223, 221, 221);
+        border-radius: 3px;
+      }
+
+      select:focus{
+        outline: none;
+      }
+    }
+
+    .dual-input{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      div{
+        width: 47%;
+      }
+    }
+
+    button{
+      width: 100%;
+      height: 35px;
+      background-color: var(--nav);
+      border: none;
+      color: aliceblue;
+      margin-top: 10px;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+    }
+
+  }
+}
