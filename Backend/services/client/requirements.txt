@@ -1,0 +1,11 @@
+Django==4.0
+django-cors-headers==3.11.0
+psycopg2==2.9
+psycopg2-binary==2.9
+requests==2.27.0
+gunicorn==20.0.4
+urllib3==1.26.9
+python-decouple==3.5
+dj-database-url==1.0.0
+python-dotenv==0.20.0
+gerencianet==3.0.0
