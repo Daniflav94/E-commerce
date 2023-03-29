@@ -127,28 +127,27 @@ class ClientsCards(AbstractBaseModel):
         }
 
 class Products(AbstractBaseModel):
-    product_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     picture_url = models.CharField(max_length=200, null=True, blank=True)
-    product_description = models.CharField(max_length=300)
-    product_subcategory = models.ForeignKey('register.SubCategory', on_delete=models.CASCADE, related_name='subcategory_product')
-    product_price = models.DecimalField(max_digits=8, decimal_places=2)
+    description = models.CharField(max_length=300)
+    category = models.ForeignKey('register.ProductCategory', on_delete=models.CASCADE, related_name='category_product')
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     is_available = models.BooleanField(default=False)
 
     def to_product_json(self):
         return {
             'id': self.pk,
             'picture': self.picture,
-            'product': self.product_name,
-            'description': self.product_description,
-            'sub_ategory': self.product_subcategory.pk,
-            'price': self.product_price,
+            'product': self.name,
+            'description': self.description,
+            'sub_ategory': self.subcategory.pk,
+            'price': self.price,
             'is_available': self.available
         }
 
 class ProductCategory(AbstractBaseModel):
     category = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    #sub_category = models.ForeignKey('register.SubCategory', on_delete=models.CASCADE, blank=True, null=True, related_name='productcategory_subcategory')
 
     def to_json(self):
         return {
@@ -157,18 +156,6 @@ class ProductCategory(AbstractBaseModel):
             'description': self.description
         }
 
-class SubCategory(AbstractBaseModel):
-    sub_category = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
-    category = models.ForeignKey('register.ProductCategory', on_delete=models.CASCADE, related_name='subcategory_productcategory')
-    
-    def to_json(self):
-        return {
-            'id': self.pk,
-            'name': self.sub_category,
-            'description': self.description
-        }
-        
 class Sales(AbstractBaseModel):
     product = models.ForeignKey('register.Products', on_delete=models.CASCADE, related_name='company_sales')
     amount = models.CharField('amount', max_length=10)
