@@ -16,9 +16,11 @@ import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
+import { NgxMaskPipe, NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -41,9 +43,14 @@ registerLocaleData(ptBr);
     MaterialModule,
     NgxGlideModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+
   ],
   providers: [
+    provideNgxMask(),
     { provide: LOCALE_ID, useValue: 'pt' },
   ],
   bootstrap: [AppComponent]

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxMaskDirective } from 'ngx-mask/lib/ngx-mask.directive';
+import { provideNgxMask } from 'ngx-mask/lib/ngx-mask.providers';
 import { Sacola } from 'src/app/interfaces/sacola';
 
 @Component({
   selector: 'app-finalizar-compra',
   templateUrl: './finalizar-compra.component.html',
-  styleUrls: ['./finalizar-compra.component.scss']
+  styleUrls: ['./finalizar-compra.component.scss'],
 })
 export class FinalizarCompraComponent implements OnInit {
 
@@ -12,6 +15,31 @@ export class FinalizarCompraComponent implements OnInit {
     this.calcularTotal()
   }
 
+  formInfo: FormGroup
+  formEndereco: FormGroup
+
+  constructor(
+    fb: FormBuilder
+  ){
+    this.formInfo = fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      nome: ['', Validators.required],
+      sobrenome: ['', [Validators.required]],
+      genero: ['masculino', Validators.required],
+      nascimento: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      telefone: ['', Validators.required]
+    }),
+
+    this.formEndereco = fb.group({
+      cep: ['', [Validators.required]],
+      rua: ['', Validators.required],
+      end: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      complemento: ['', [Validators.required]]
+    })
+  }
+  entrega: boolean = true
   valorTotal: string = ""
   produtosSacola: Sacola[] = [{
     id: 1,
@@ -50,6 +78,12 @@ export class FinalizarCompraComponent implements OnInit {
       produto.valorTotal = total
     this.valorTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
     })
+  }
+
+  salvarInformacoes() {
+    if(this.formInfo.valid){
+      this.entrega = true
+    }
   }
 
 }
