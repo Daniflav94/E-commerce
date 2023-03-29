@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Sacola } from 'src/app/interfaces/sacola';
 
 @Component({
@@ -10,6 +11,22 @@ export class FinalizarCompraComponent implements OnInit {
 
   ngOnInit(): void {
     this.calcularTotal()
+  }
+
+  formInfo: FormGroup
+
+  constructor(
+    fb: FormBuilder
+  ){
+    this.formInfo = fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      nome: ['', Validators.required],
+      sobrenome: ['', [Validators.required]],
+      genero: ['masculino', Validators.required],
+      nascimento: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      telefone: ['', Validators.required, Validators.minLength(10), Validators.maxLength(11)]
+    })
   }
 
   valorTotal: string = ""

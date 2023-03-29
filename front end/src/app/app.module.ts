@@ -16,7 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
 
@@ -41,7 +41,8 @@ registerLocaleData(ptBr);
     MaterialModule,
     NgxGlideModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
