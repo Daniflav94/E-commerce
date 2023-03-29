@@ -130,7 +130,7 @@ class Products(AbstractBaseModel):
     product_name = models.CharField(max_length=200)
     picture_url = models.CharField(max_length=200, null=True, blank=True)
     product_description = models.CharField(max_length=300)
-    product_category = models.ForeignKey('register.SubCategory', on_delete=models.CASCADE, related_name='subcategory_product')
+    product_subcategory = models.ForeignKey('register.SubCategory', on_delete=models.CASCADE, related_name='subcategory_product')
     product_price = models.DecimalField(max_digits=8, decimal_places=2)
     is_available = models.BooleanField(default=False)
 
@@ -140,7 +140,7 @@ class Products(AbstractBaseModel):
             'picture': self.picture,
             'product': self.product_name,
             'description': self.product_description,
-            'category': self.product_category.pk,
+            'sub_ategory': self.product_subcategory.pk,
             'price': self.product_price,
             'is_available': self.available
         }
