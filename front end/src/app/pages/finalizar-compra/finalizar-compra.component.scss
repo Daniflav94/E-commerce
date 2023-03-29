@@ -47,7 +47,7 @@ nav {
 
   .bloco {
     background-color: rgba(255, 252, 252, 0.999);
-    min-width: 30%;
+    min-width: 25%;
     height: auto;
     border-radius: 3px;
     border: 1px solid rgb(234, 232, 232);
@@ -69,6 +69,25 @@ nav {
 
   }
 
+  .entrega-pagamento{
+    .endereco{
+      h5{
+        font-size: 15px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        margin: 10px 0;
+      }
+
+      .input-endereco{
+        border: 1px solid rgb(223, 221, 221);
+        border-radius: 3px;
+        height: 10px;
+        padding: 10px;
+        margin-bottom: 12px;
+        background-color: transparent;
+      }
+    }
+  }
 
   .resumo{
     .produtos{
@@ -96,6 +115,7 @@ nav {
       text-transform: uppercase;
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
+      letter-spacing: 2px;
     }
 
     img {
@@ -138,6 +158,7 @@ nav {
         border-radius: 3px;
         height: 10px;
         padding: 10px;
+        margin-bottom: 5px;
       }
 
 
@@ -165,17 +186,16 @@ nav {
         width: 48%;
       }
     }
+  }
 
-    button{
-      width: 100%;
-      height: 35px;
-      background-color: var(--nav);
-      border: none;
-      color: aliceblue;
-      margin-top: 10px;
-      font-family: 'Montserrat', sans-serif;
-      cursor: pointer;
-    }
-
+  button{
+    width: 100%;
+    height: 35px;
+    background-color: var(--nav);
+    border: none;
+    color: aliceblue;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
   }
 }

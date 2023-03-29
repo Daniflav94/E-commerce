@@ -19,6 +19,8 @@ import { LancamentosComponent } from './pages/lancamentos/lancamentos.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
+import { NgxMaskPipe, NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -42,9 +44,13 @@ registerLocaleData(ptBr);
     NgxGlideModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+
   ],
   providers: [
+    provideNgxMask(),
     { provide: LOCALE_ID, useValue: 'pt' },
   ],
   bootstrap: [AppComponent]

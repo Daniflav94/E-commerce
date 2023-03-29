@@ -17,26 +17,26 @@
     <form [formGroup]="formInfo">
       <div>
         <label for="email">E-mail</label>
-        <input type="email" name="email" formControlName="email" placeholder="email@email.com" [ngClass]="[formInfo.get('email')?.errors?.['required'] && formInfo.get('email')?.touched? 'input-erro' : 'input']">
+        <input type="email" name="email" required formControlName="email" placeholder="email@email.com" [ngClass]="[formInfo.get('email')?.errors?.['required'] && formInfo.get('email')?.touched? 'input-erro' : 'input']">
         <div class="erro" *ngIf="formInfo.get('email')?.errors?.['required'] && formInfo.get('email')?.touched">Campo obrigatório.</div>
         <div class="erro" *ngIf="formInfo.get('email')?.errors?.['email'] && formInfo.get('email')?.touched">Formato de email incorreto.</div>
       </div>
       <div class="dual-input">
         <div>
           <label for="nome">Primeiro Nome</label>
-          <input type="text" name="nome" formControlName="nome"[ngClass]="[formInfo.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
+          <input type="text" name="nome" required formControlName="nome"[ngClass]="[formInfo.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
           <div class="erro" *ngIf="formInfo.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched">Campo obrigatório.</div>
         </div>
         <div>
           <label for="sobrenome">Último Nome</label>
-          <input type="text" name="sobrenome" formControlName="sobrenome" [ngClass]="[formInfo.get('sobrenome')?.errors?.['required'] && formInfo.get('sobrenome')?.touched? 'input-erro' : 'input']">
+          <input type="text" name="sobrenome" required formControlName="sobrenome" [ngClass]="[formInfo.get('sobrenome')?.errors?.['required'] && formInfo.get('sobrenome')?.touched? 'input-erro' : 'input']">
           <div class="erro" *ngIf="formInfo.get('sobrenome')?.errors?.['required'] && formInfo.get('sobrenome')?.touched">Campo obrigatório.</div>
         </div>
       </div>
       <div class="dual-input">
         <div>
           <span>Gênero</span>
-          <select formControlName="genero" [ngClass]="[formInfo.get('genero')?.errors?.['required'] && formInfo.get('genero')?.touched? 'input-erro' : 'select']">
+          <select formControlName="genero" required [ngClass]="[formInfo.get('genero')?.errors?.['required'] && formInfo.get('genero')?.touched? 'input-erro' : 'select']">
             <option value="masculino" selected>Masculino</option>
             <option value="feminino">Feminino</option>
             <option value="outros">Outros</option>
@@ -44,24 +44,25 @@
         </div>
         <div>
           <label for="data">Data de Nascimento</label>
-          <input type="date" name="data" placeholder="dd/mm/yyyy" formControlName="nascimento" [ngClass]="[formInfo.get('nascimento')?.errors?.['required'] && formInfo.get('nascimento')?.touched? 'input-erro' : 'input']">
+          <input type="text" required mask="d0/M0/0000" name="data" placeholder="dd/mm/yyyy" formControlName="nascimento" [ngClass]="[formInfo.get('nascimento')?.errors?.['required'] && formInfo.get('nascimento')?.touched? 'input-erro' : 'input']">
           <div class="erro" *ngIf="formInfo.get('nascimento')?.errors?.['required'] && formInfo.get('nascimento')?.touched">Campo obrigatório.</div>
         </div>
       </div>
       <div class="dual-input">
         <div>
           <label for="cpf">CPF</label>
-          <input type="text" name="cpf" placeholder="999.999.999-99" formControlName="cpf"  [ngClass]="[formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched? 'input-erro' : 'input']">
+          <input type="text" required mask="000.000.000-00" name="cpf" placeholder="999.999.999-99" formControlName="cpf"  [ngClass]="[formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched? 'input-erro' : 'input']">
           <div class="erro" *ngIf="formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched">Campo obrigatório.</div>
         </div>
         <div>
           <label for="telefone">Telefone</label>
-          <input type="number" name="telefone" placeholder="11 99999-9999" formControlName="telefone" [ngClass]="[formInfo.get('telefone')?.errors?.['required'] && formInfo.get('telefone')?.touched? 'input-erro' : 'input']">
+          <input type="text" required mask="(00) 0000-0000||(00) 0 0000-0000" name="telefone" placeholder="11 99999-9999" formControlName="telefone" [ngClass]="[formInfo.get('telefone')?.errors?.['required'] && formInfo.get('telefone')?.touched? 'input-erro' : 'input']">
           <div class="erro" *ngIf="formInfo.get('telefone')?.errors?.['required'] && formInfo.get('telefone')?.touched">Campo obrigatório.</div>
         </div>
       </div>
-      <button type="submit">Ir para a Entrega</button>
+      <button type="submit" [disabled]="!formInfo.valid" (click)="salvarInformacoes()">Ir para a Entrega</button>
     </form>
+
   </div>
   <div class="entrega-pagamento">
     <div class="entrega bloco">
@@ -69,7 +70,35 @@
         <img src="/assets/icons/home.png" width="18px">
         <h5>Entrega</h5>
       </div>
-      <p>Aguardando o preenchimento dos dados</p>
+      <p *ngIf="!entrega">Aguardando o preenchimento dos dados</p>
+      <div *ngIf="entrega">
+        <form [formGroup]="formEndereco">
+          <div>
+            <label for="cep">CEP</label>
+            <input type="text" name="cep" mask="00000-000" formControlName="cep" [ngClass]="[formEndereco.get('cep')?.errors?.['required'] && formEndereco.get('cep')?.touched? 'input-erro' : 'input']">
+            <div class="erro" *ngIf="formEndereco.get('cep')?.errors?.['required'] && formInfo.get('cep')?.touched">Campo obrigatório.</div>
+          </div>
+          <div *ngIf="formEndereco.get('cep')?.errors?.['required']" class="endereco">
+            <h5>Endereço de entrega</h5>
+            <input type="text" name="rua" class="input-endereco" formControlName="rua">
+            <input type="text" name="end" class="input-endereco" formControlName="end">
+            <div class="dual-input">
+              <div>
+                <label for="num">Número</label>
+                <input type="number" class="input" name="num" formControlName="numero">
+              </div>
+              <div>
+                <label for="complemento">Complemento e Referência</label>
+                <input type="text" class="input" name="complemento" placeholder="Opcional" formControlName="complemento">
+              </div>
+            </div>
+            <div>
+              <label for="destinatario">Destinatário</label>
+              <input type="text" name="destinatario" class="input">
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div class="pagamento bloco">
@@ -98,7 +127,7 @@
         </div>
       </div>
       <div class="valor-total">
-        <span>Total:</span>
+        <span>Total: </span>
         <span>{{valorTotal}}</span>
       </div>
     </div>
