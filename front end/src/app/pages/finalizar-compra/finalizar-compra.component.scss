@@ -78,13 +78,16 @@ nav {
         margin: 10px 0;
       }
 
-      .input-endereco{
-        border: 1px solid rgb(223, 221, 221);
-        border-radius: 3px;
+      .div-endereco{
         height: 10px;
         padding: 10px;
-        margin-bottom: 12px;
+        margin-bottom: 5px;
         background-color: transparent;
+        font-size: 13px;
+      }
+
+      .dual-input{
+        margin-top: 10px
       }
     }
   }
@@ -193,7 +196,7 @@ nav {
     height: 35px;
     background-color: var(--nav);
     border: none;
-    color: aliceblue;
+    color: white;
     margin-top: 10px;
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
