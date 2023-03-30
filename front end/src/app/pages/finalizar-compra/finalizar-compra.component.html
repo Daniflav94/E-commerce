@@ -72,31 +72,33 @@
       </div>
       <p *ngIf="!entrega">Aguardando o preenchimento dos dados</p>
       <div *ngIf="entrega">
-        <form [formGroup]="formEndereco">
+        <form #formEnd="ngForm">
           <div>
             <label for="cep">CEP</label>
-            <input type="text" name="cep" mask="00000-000" formControlName="cep" [ngClass]="[formEndereco.get('cep')?.errors?.['required'] && formEndereco.get('cep')?.touched? 'input-erro' : 'input']">
-            <div class="erro" *ngIf="formEndereco.get('cep')?.errors?.['required'] && formInfo.get('cep')?.touched">Campo obrigatório.</div>
+            <input type="text"  mask="00000-000" (blur)="consultarCep()" class="input" name="cep" [(ngModel)]="formEndereco.cep">
           </div>
-          <div *ngIf="formEndereco.get('cep')?.errors?.['required']" class="endereco">
+          <div class="endereco" *ngIf="formEndereco.logradouro != ''">
             <h5>Endereço de entrega</h5>
-            <input type="text" name="rua" class="input-endereco" formControlName="rua">
-            <input type="text" name="end" class="input-endereco" formControlName="end">
+            <div class="div-endereco">{{formEndereco.logradouro}}</div>
+            <div class="div-endereco">{{formEndereco.bairro}}, {{formEndereco.localidade}} - {{formEndereco.uf}}</div>
             <div class="dual-input">
               <div>
-                <label for="num">Número</label>
-                <input type="number" class="input" name="num" formControlName="numero">
+                <label for="numero">Número</label>
+                <input type="number" class="input" name="numero" [(ngModel)]="formEndereco.numero" required >
+                <div *ngIf="formEnd.errors?.['required']">Campo Obrigatório</div>
               </div>
               <div>
                 <label for="complemento">Complemento e Referência</label>
-                <input type="text" class="input" name="complemento" placeholder="Opcional" formControlName="complemento">
+                <input type="text" class="input" name="complemento" placeholder="Opcional" [(ngModel)]="formEndereco.complemento">
               </div>
             </div>
             <div>
               <label for="destinatario">Destinatário</label>
-              <input type="text" name="destinatario" class="input">
+              <input type="text" name="destinatario" class="input" [(ngModel)]="formEndereco.destinatario">
             </div>
+            <button [disabled]="!formEnd.valid" (click)="salvarEndereco(formEnd)">Ir para o pagamento</button>
           </div>
+
         </form>
       </div>
     </div>

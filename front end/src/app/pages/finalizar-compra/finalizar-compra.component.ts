@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask/lib/ngx-mask.directive';
 import { provideNgxMask } from 'ngx-mask/lib/ngx-mask.providers';
+import { Endereco } from 'src/app/interfaces/endereco';
 import { Sacola } from 'src/app/interfaces/sacola';
+import { ViaCepService } from 'src/app/services/via-cep.service';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -16,10 +18,11 @@ export class FinalizarCompraComponent implements OnInit {
   }
 
   formInfo: FormGroup
-  formEndereco: FormGroup
 
   constructor(
-    fb: FormBuilder
+    fb: FormBuilder,
+    private apiCep: ViaCepService
+
   ){
     this.formInfo = fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -29,16 +32,21 @@ export class FinalizarCompraComponent implements OnInit {
       nascimento: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       telefone: ['', Validators.required]
-    }),
-
-    this.formEndereco = fb.group({
-      cep: ['', [Validators.required]],
-      rua: ['', Validators.required],
-      end: ['', [Validators.required]],
-      numero: ['', [Validators.required]],
-      complemento: ['', [Validators.required]]
     })
   }
+
+  formEndereco: Endereco = {
+    cep: '',
+    logradouro: '',
+    localidade: '',
+    uf: '',
+    bairro: '',
+    numero: '',
+    complemento: '',
+    destinatario: ''
+  }
+
+  pagamento: boolean = true
   entrega: boolean = true
   valorTotal: string = ""
   produtosSacola: Sacola[] = [{
@@ -80,9 +88,34 @@ export class FinalizarCompraComponent implements OnInit {
     })
   }
 
+  consultarCep() {
+    const cep: string = this.formEndereco.cep
+    console.log("método cep chamado")
+      this.apiCep.pesquisarCep(cep).subscribe(dados => {
+        if(dados.erro){
+          window.alert("Cep inválido")
+          return
+        }
+        this.formEndereco.logradouro = dados.logradouro
+        this.formEndereco.bairro = dados.bairro
+        this.formEndereco.localidade = dados.localidade
+        this.formEndereco.uf = dados.uf
+        console.log(dados)
+      })
+    
+  }
+
   salvarInformacoes() {
     if(this.formInfo.valid){
       this.entrega = true
+      this.formEndereco.destinatario = this.formInfo.value.nome
+    }
+  }
+
+  salvarEndereco(form: NgForm){
+    if(form.valid){
+      this.pagamento  = true
+
     }
   }
 
