@@ -46,8 +46,9 @@ export class FinalizarCompraComponent implements OnInit {
     destinatario: ''
   }
 
-  pagamento: boolean = true
-  entrega: boolean = true
+  informacoesValidas: boolean = false
+  pagamento: boolean = false
+  entrega: boolean = false
   valorTotal: string = ""
   produtosSacola: Sacola[] = [{
     id: 1,
@@ -102,21 +103,27 @@ export class FinalizarCompraComponent implements OnInit {
         this.formEndereco.uf = dados.uf
         console.log(dados)
       })
-    
+
   }
 
   salvarInformacoes() {
     if(this.formInfo.valid){
       this.entrega = true
+      this.informacoesValidas = true
       this.formEndereco.destinatario = this.formInfo.value.nome
     }
   }
 
-  salvarEndereco(form: NgForm){
+  salvarEndereco(form: NgForm)  {
     if(form.valid){
       this.pagamento  = true
 
     }
+  }
+
+  editarInfo() {
+    this.informacoesValidas = false
+    this.entrega = false
   }
 
 }
