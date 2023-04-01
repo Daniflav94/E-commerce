@@ -137,12 +137,12 @@ class Products(AbstractBaseModel):
     def to_product_json(self):
         return {
             'id': self.pk,
-            'picture': self.picture,
+            'picture': self.picture_url,
             'product': self.name,
             'description': self.description,
-            'sub_ategory': self.subcategory.pk,
+            'category': self.category.pk,
             'price': self.price,
-            'is_available': self.available
+            'is_available': self.is_available
         }
 
 class ProductCategory(AbstractBaseModel):
@@ -176,7 +176,7 @@ class Shopping_Cart(AbstractBaseModel):
         amount_item = self.amount - 1
         return amount_item
 
-    client = models.ForeignKey('register.Clients', null=True, on_delete=models.CASCADE, related_name='shopping_client')
+    #client = models.ForeignKey('register.Clients', null=True, on_delete=models.CASCADE, related_name='shopping_client')
     product = models.ForeignKey('register.Products', null=True, on_delete=models.SET_NULL, related_name='shopping_products')
     amount = models.IntegerField()
     selected = models.BooleanField()
