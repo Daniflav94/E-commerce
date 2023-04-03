@@ -160,10 +160,10 @@ export class FinalizarCompraComponent implements OnInit {
   }
 
   calcularParcelas() {
-    this.parcelas.parcela1 = this.produtosSacola.valorTotal
-    this.parcelas.parcela2 = this.produtosSacola.valorTotal / 2
-    this.parcelas.parcela3 = this.produtosSacola.valorTotal / 3
-    this.parcelas.parcela4 = this.produtosSacola.valorTotal / 4
+    this.parcelas.parcela1 = (this.produtosSacola.valorTotal).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
+    this.parcelas.parcela2 = (this.produtosSacola.valorTotal / 2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
+    this.parcelas.parcela3 = (this.produtosSacola.valorTotal / 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
+    this.parcelas.parcela4 = (this.produtosSacola.valorTotal / 4).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
     }
 
 

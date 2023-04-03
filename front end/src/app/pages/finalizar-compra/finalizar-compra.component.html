@@ -73,6 +73,8 @@
               [ngClass]="[formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched? 'input-erro' : 'input']">
             <div class="erro" *ngIf="formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched">Campo
               obrigatório.</div>
+              <div class="erro" *ngIf="formInfo.get('cpf')?.errors?.['minLength'] && formInfo.get('cpf')?.touched">Campo
+                obrigatório.</div>
           </div>
           <div>
             <label for="telefone">Telefone</label>
@@ -102,7 +104,7 @@
         </div>
         <img src="/assets/icons/editar.png" *ngIf="entregaValida" (click)="editarInfo('entrega')">
       </div>
-      <p *ngIf="!entrega">Aguardando o preenchimento dos dados</p>
+      <p *ngIf="!entrega && !entregaValida">Aguardando o preenchimento dos dados</p>
       <div *ngIf="entrega">
         <form #formEnd="ngForm">
           <div>
@@ -187,10 +189,12 @@
           </div>
           <div>
             <label for="nomeCartao">Nome impresso no cartão</label>
-            <input type="text" name="nomeCartao">
+            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
+            <div class="erro" *ngIf="formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched">Campo
+              obrigatório.</div>
           </div>
           <div class="dual-input">
-            
+
           </div>
 
         </form>
