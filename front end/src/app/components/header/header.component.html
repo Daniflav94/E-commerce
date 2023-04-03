@@ -3,7 +3,7 @@
     <mat-nav-list>
       <h5>MINHA SACOLA</h5>
       <div class="produtos">
-        <div class="produto" *ngFor="let produto of produtosSacola">
+        <div class="produto" *ngFor="let produto of produtosSacola.produtos">
           <hr>
           <img [src]="produto.produto.fotos[0]">
           <div class="infos">
@@ -46,7 +46,7 @@
           <img src="/assets/icons/sacola-de-compras.png" width="30px">
           <span class="qnt-sacola">
             <span class="circulo"></span>
-              <span class="texto">{{produtosSacola.length}}</span>
+              <span class="texto">{{produtosSacola.produtos.length}}</span>
           </span>
         </div>
       </li>

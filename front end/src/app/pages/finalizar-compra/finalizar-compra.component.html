@@ -14,7 +14,7 @@
         <img src="/assets/icons/user.png" width="18px">
         <h5>Informações pessoais</h5>
       </div>
-      <img src="/assets/icons/editar.png" *ngIf="informacoesValidas" (click)="editarInfo()">
+      <img src="/assets/icons/editar.png" *ngIf="informacoesValidas" (click)="editarInfo('info')">
     </div>
     <div *ngIf="!informacoesValidas">
       <p>Solicitamos apenas informações essenciais</p>
@@ -95,9 +95,12 @@
   </div>
   <div class="entrega-pagamento">
     <div class="entrega bloco">
-      <div class="titulo">
-        <img src="/assets/icons/home.png" width="18px">
-        <h5>Entrega</h5>
+      <div class="header">
+        <div class="titulo">
+          <img src="/assets/icons/home.png" width="18px">
+          <h5>Entrega</h5>
+        </div>
+        <img src="/assets/icons/editar.png" *ngIf="entregaValida" (click)="editarInfo('entrega')">
       </div>
       <p *ngIf="!entrega">Aguardando o preenchimento dos dados</p>
       <div *ngIf="entrega">
@@ -132,6 +135,11 @@
 
         </form>
       </div>
+      <div *ngIf="entregaValida" class="informacoes">
+        <span>{{formEndereco.logradouro}}, {{formEndereco.numero}}</span>
+        <span>{{formEndereco.bairro}}, {{formEndereco.localidade}} - {{formEndereco.uf}}</span>
+        <span>{{formEndereco.cep}}</span>
+      </div>
     </div>
 
     <div class="pagamento bloco">
@@ -139,7 +147,54 @@
         <img src="/assets/icons/cartao-do-banco.png" width="18px">
         <h5>Pagamento</h5>
       </div>
-      <p>Aguardando o preenchimento dos dados</p>
+      <p *ngIf="!pagamento">Aguardando o preenchimento dos dados</p>
+      <div *ngIf="pagamento">
+        <div>
+          <p>Escolha a forma de pagamento</p>
+          <form #formaPag="ngForm" class="radios">
+            <div class="forma-pagamento">
+              <input type="radio" name="cartao" value="cartao" checked [(ngModel)]="formaPagamento">
+              <label for="cartao">Cartão de crédito</label>
+              <img src="/assets/icons/cartao-do-banco (1).png" width="16px">
+            </div>
+            <div class="forma-pagamento">
+              <input type="radio" name="pix" value="pix" [(ngModel)]="formaPagamento">
+              <label for="pix">Pix</label>
+              <img src="/assets/icons/icone-pix.png" width="16px">
+            </div>
+          </form>
+        </div>
+        <form [formGroup]="formPag">
+          <div>
+            <input type="text" name="numero" placeholder="Número do cartão" formControlName="numero" (keydown)="verificarBandeira()" [ngClass]="[formPag.get('numero')?.errors?.['required'] && formInfo.get('numero')?.touched? 'input-erro' : 'input']">
+            <div class="erro" *ngIf="formPag.get('numero')?.errors?.['required'] && formPag.get('numero')?.touched">Campo
+            obrigatório.</div>
+            <div class="bandeiras">
+              <img src="/assets/icons/visa.png" id="visa">
+              <img src="/assets/icons/master.png" id="master">
+              <img src="/assets/icons/hiper.png" id="hiper">
+              <img src="/assets/icons/elo.png" id="elo">
+            </div>
+          </div>
+          <div>
+            <select>
+              <option value="" disabled selected>Quantidade de parcelas</option>
+              <option value="1">Á vista - {{parcelas.parcela1}}</option>
+              <option value="2">2x {{parcelas.parcela2}} sem juros</option>
+              <option value="3">3x {{parcelas.parcela3}} sem juros</option>
+              <option value="4">4x {{parcelas.parcela4}} sem juros</option>
+            </select>
+          </div>
+          <div>
+            <label for="nomeCartao">Nome impresso no cartão</label>
+            <input type="text" name="nomeCartao">
+          </div>
+          <div class="dual-input">
+            
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
 
@@ -149,7 +204,7 @@
       <h5>Resumo da compra</h5>
     </div>
     <div class="produtos">
-      <div class="produto" *ngFor="let produto of produtosSacola">
+      <div class="produto" *ngFor="let produto of produtosSacola.produtos">
         <img [src]="produto.produto.fotos[0]">
         <div class="infos">
           <span class="nome">{{produto.produto.nome}}</span>

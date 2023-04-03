@@ -57,7 +57,7 @@ nav {
   .info,
   .entrega-pagamento,
   .resumo {
-    margin: 40px 15px;
+    margin: 40px 12px;
   }
 
   .entrega {
@@ -66,22 +66,11 @@ nav {
 
   .info{
     height: max-content;
-
-    .informacoes{
-      display: flex;
-      flex-direction: column;
-      color: gray;
-      font-size: 13px;
-
-      span{
-        margin: 5px;
-      }
-    }
   }
 
-
-
   .entrega-pagamento{
+    min-width: 25%;
+
     .endereco{
       h5{
         font-size: 15px;
@@ -102,13 +91,57 @@ nav {
         margin-top: 10px
       }
     }
+
+    .pagamento{
+
+      .radios{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .forma-pagamento{
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+
+        input, label, img{
+          margin-right: 8px;
+          margin-top: 5px;
+        }
+      }
+
+      .bandeiras{
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        justify-content: space-between;
+        margin: 10px auto;
+
+        img{
+          height: 20px;
+          width: 35px;
+          object-fit: contain;
+          filter: grayscale(100);
+          opacity: 0.5;
+        }
+
+        .filter{
+          filter: grayscale(0);
+          opacity: 1;
+        }
+      }
+    }
+
   }
 
   .resumo{
     .produtos{
       max-height: 580px;
       overflow: auto;
-      width: 370px;
+      width: 280px;
 
       .produto{
         display: flex;
@@ -117,6 +150,17 @@ nav {
           width: 100px;
         }
       }
+    }
+  }
+
+  .informacoes{
+    display: flex;
+    flex-direction: column;
+    color: gray;
+    font-size: 13px;
+
+    span{
+      margin: 5px;
     }
   }
 
@@ -196,6 +240,13 @@ nav {
         height: 32px;
         border: 1px solid rgb(223, 221, 221);
         border-radius: 3px;
+        color: gray;
+        padding: 5px;
+      }
+
+      option{
+        padding: 10px;
+
       }
 
       select:focus{
