@@ -35,15 +35,16 @@ export class FinalizarCompraComponent implements OnInit {
       genero: ['masculino', Validators.required],
       nascimento: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      telefone: ['', Validators.required]
+      telefone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]]
     }),
       this.formPag = fb.group({
-        numero: ['', [Validators.required]],
+        numero: ['', [Validators.required, Validators.minLength(16)]],
         parcelas: ['', [Validators.required]],
         nome: ['', [Validators.required]],
         mesValidade: ['', [Validators.required]],
         anoValidade: ['', [Validators.required]],
-        codSeguranca: ['', [Validators.required]]
+        codSeguranca: ['', [Validators.required, Validators.minLength(3)]],
+        cpfTitular: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
       })
   }
 
@@ -62,9 +63,10 @@ export class FinalizarCompraComponent implements OnInit {
 
   entregaValida: boolean = false
   informacoesValidas: boolean = false
-  pagamento: boolean = false
+  pagamento: boolean = true
   entrega: boolean = false
   valorTotal: string = ""
+  totalComFrete: string = ""
   parcelas: any = {
     parcela1: 0,
     parcela2: 0,
@@ -202,6 +204,11 @@ export class FinalizarCompraComponent implements OnInit {
       hiper?.classList.remove('filter')
       visa?.classList.remove('filter')
     }
+
+  }
+
+  finalizarCompra(){
+
   }
 
 }
