@@ -14,7 +14,7 @@
         <img src="/assets/icons/user.png" width="18px">
         <h5>Informações pessoais</h5>
       </div>
-      <img src="/assets/icons/editar.png" *ngIf="informacoesValidas" (click)="editarInfo()">
+      <img src="/assets/icons/editar.png" *ngIf="informacoesValidas" (click)="editarInfo('info')">
     </div>
     <div *ngIf="!informacoesValidas">
       <p>Solicitamos apenas informações essenciais</p>
@@ -73,6 +73,7 @@
               [ngClass]="[formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched? 'input-erro' : 'input']">
             <div class="erro" *ngIf="formInfo.get('cpf')?.errors?.['required'] && formInfo.get('cpf')?.touched">Campo
               obrigatório.</div>
+              <div class="erro" *ngIf="formInfo.get('cpf')?.errors?.['minlength'] && formInfo.get('cpf')?.touched">Campo CPF precisa ter 11 dígitos.</div>
           </div>
           <div>
             <label for="telefone">Telefone</label>
@@ -82,6 +83,7 @@
             <div class="erro"
               *ngIf="formInfo.get('telefone')?.errors?.['required'] && formInfo.get('telefone')?.touched">Campo
               obrigatório.</div>
+              <div class="erro" *ngIf="formInfo.get('telefone')?.errors?.['minlength'] && formInfo.get('telefone')?.touched">Telefone precisa ter pelo menos 10 dígitos.</div>
           </div>
         </div>
         <button type="submit" [disabled]="!formInfo.valid" (click)="salvarInformacoes()">Ir para a Entrega</button>
@@ -95,11 +97,14 @@
   </div>
   <div class="entrega-pagamento">
     <div class="entrega bloco">
-      <div class="titulo">
-        <img src="/assets/icons/home.png" width="18px">
-        <h5>Entrega</h5>
+      <div class="header">
+        <div class="titulo">
+          <img src="/assets/icons/home.png" width="18px">
+          <h5>Entrega</h5>
+        </div>
+        <img src="/assets/icons/editar.png" *ngIf="entregaValida" (click)="editarInfo('entrega')">
       </div>
-      <p *ngIf="!entrega">Aguardando o preenchimento dos dados</p>
+      <p *ngIf="!entrega && !entregaValida">Aguardando o preenchimento dos dados</p>
       <div *ngIf="entrega">
         <form #formEnd="ngForm">
           <div>
@@ -114,8 +119,8 @@
             <div class="dual-input">
               <div>
                 <label for="numero">Número</label>
-                <input type="number" class="input" name="numero" [(ngModel)]="formEndereco.numero" required>
-                <div *ngIf="formEnd.errors?.['required']">Campo Obrigatório</div>
+                <input type="number" class="input" name="numero"  #formNumero="ngModel" [(ngModel)]="formEndereco.numero" required>
+                <div *ngIf="formNumero.errors?.['required'] && formNumero.touched" class="erro">Campo Obrigatório</div>
               </div>
               <div>
                 <label for="complemento">Complemento e Referência</label>
@@ -132,6 +137,11 @@
 
         </form>
       </div>
+      <div *ngIf="entregaValida" class="informacoes">
+        <span>{{formEndereco.logradouro}}, {{formEndereco.numero}}</span>
+        <span>{{formEndereco.bairro}}, {{formEndereco.localidade}} - {{formEndereco.uf}}</span>
+        <span>{{formEndereco.cep}}</span>
+      </div>
     </div>
 
     <div class="pagamento bloco">
@@ -139,7 +149,115 @@
         <img src="/assets/icons/cartao-do-banco.png" width="18px">
         <h5>Pagamento</h5>
       </div>
-      <p>Aguardando o preenchimento dos dados</p>
+      <p *ngIf="!pagamento">Aguardando o preenchimento dos dados</p>
+      <div *ngIf="pagamento">
+        <div>
+          <p>Escolha a forma de pagamento</p>
+          <form #formaPag="ngForm" class="radios">
+            <div class="forma-pagamento">
+              <input type="radio" name="cartao" value="cartao" checked [(ngModel)]="formaPagamento">
+              <label for="cartao">Cartão de crédito</label>
+              <img src="/assets/icons/cartao-do-banco (1).png" width="16px">
+            </div>
+            <div class="forma-pagamento">
+              <input type="radio" name="pix" value="pix" [(ngModel)]="formaPagamento">
+              <label for="pix">Pix</label>
+              <img src="/assets/icons/icone-pix.png" width="16px">
+            </div>
+          </form>
+        </div>
+        <form [formGroup]="formPag">
+          <div>
+            <label for="numero">Número do cartão</label>
+            <input type="text" name="numero" mask="0000 0000 0000 0000" formControlName="numero" (keydown)="verificarBandeira()" [ngClass]="[formPag.get('numero')?.errors?.['required'] && formInfo.get('numero')?.touched? 'input-erro' : 'input']">
+            <div class="erro" *ngIf="formPag.get('numero')?.errors?.['required'] && formPag.get('numero')?.touched">Campo
+            obrigatório.</div>
+            <div class="erro" *ngIf="formPag.get('numero')?.errors?.['minlength'] && formPag.get('numero')?.touched">Cartão deve ter 16 dígitos.</div>
+            <div class="bandeiras">
+              <img src="/assets/icons/visa.png" id="visa">
+              <img src="/assets/icons/master.png" id="master">
+              <img src="/assets/icons/hiper.png" id="hiper">
+              <img src="/assets/icons/elo.png" id="elo">
+            </div>
+          </div>
+          <div>
+            <select formControlName="parcelas" >
+              <option value="" disabled selected>Quantidade de parcelas</option>
+              <option value="1">Á vista - {{parcelas.parcela1}}</option>
+              <option value="2">2x {{parcelas.parcela2}} sem juros</option>
+              <option value="3">3x {{parcelas.parcela3}} sem juros</option>
+              <option value="4">4x {{parcelas.parcela4}} sem juros</option>
+            </select>
+            <div class="erro" *ngIf="formPag.get('parcelas')?.errors?.['required'] && formPag.get('parcelas')?.touched">Campo
+              obrigatório.</div>
+          </div>
+          <div>
+            <label for="nomeCartao" >Nome impresso no cartão</label>
+            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
+            <div class="erro" *ngIf="formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched">Campo
+              obrigatório.</div>
+          </div>
+          <div class="validade">
+            <label for="validade">Validade</label>
+            <div class="dual-input">
+              <div>
+                <select name="mes" formControlName="mesValidade">
+                  <option value="" disabled selected>Mês</option>
+                  <option value="1">01</option>
+                  <option value="2">02</option>
+                  <option value="3">03</option>
+                  <option value="4">04</option>
+                  <option value="5">05</option>
+                  <option value="6">06</option>
+                  <option value="7">07</option>
+                  <option value="8">08</option>
+                  <option value="9">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+                <div class="erro" *ngIf="formPag.get('mesValidade')?.errors?.['required'] && formPag.get('mesValidade')?.touched">Campo
+                  obrigatório.</div>
+              </div>
+              <div>
+                <select name="ano" formControlName="anoValidade">
+                  <option value="" disabled selected>Ano</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                </select>
+                <div class="erro" *ngIf="formPag.get('anoValidade')?.errors?.['required'] && formPag.get('anoValidade')?.touched">Campo
+                  obrigatório.</div>
+              </div>
+            </div>
+            </div>
+            <div class="dual-input">
+              <div>
+                <label for="codigo">Código de segurança</label>
+                <input type="number" name="codigo" mask="000" formControlName="codSeguranca" [ngClass]="[formPag.get('codSeguranca')?.errors?.['required'] && formPag.get('codSeguranca')?.touched? 'input-erro' : 'input']">
+                <div class="erro" *ngIf="formPag.get('codSeguranca')?.errors?.['required'] && formPag.get('codSeguranca')?.touched">Campo
+                  obrigatório.</div>
+                  <div class="erro" *ngIf="formPag.get('codSeguranca')?.errors?.['minlength'] && formPag.get('codSeguranca')?.touched">Código de segurança deve ter 3 dígitos.</div>
+              </div>
+              <div>
+                <label for="cpf" >CPF do titular</label>
+                <input type="text" mask="000.000.000-00" placeholder="999.999.999-99" formControlName="cpfTitular" [ngClass]="[formPag.get('cpfTitular')?.errors?.['required'] && formPag.get('cpfTitular')?.touched? 'input-erro' : 'input']">
+                <div class="erro" *ngIf="formPag.get('cpfTitular')?.errors?.['required'] && formPag.get('cpfTitular')?.touched">Campo
+                  obrigatório.</div>
+                  <div class="erro" *ngIf="formPag.get('cpfTitular')?.errors?.['minlength'] && formPag.get('cpfTitular')?.touched">Campo CPF precisa ter 11 dígitos.</div>
+              </div>
+            </div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -149,20 +267,34 @@
       <h5>Resumo da compra</h5>
     </div>
     <div class="produtos">
-      <div class="produto" *ngFor="let produto of produtosSacola">
+      <div class="produto" *ngFor="let produto of produtosSacola.produtos">
         <img [src]="produto.produto.fotos[0]">
         <div class="infos">
           <span class="nome">{{produto.produto.nome}}</span>
           <div class="qnt">
             <span>Quantidade: {{produto.quantidade}}</span>
           </div>
+          <div class="qnt">
+            <span>Valor: {{produto.produto.valor | currency : 'BRL'}}</span>
+          </div>
         </div>
       </div>
     </div>
     <div class="valor-total">
-      <span>Total: </span>
+      <span>Subtotal: </span>
       <span>{{valorTotal}}</span>
     </div>
+    <hr>
+    <div>
+      <span>Entrega normal: </span>
+      <span></span>
+    </div>
+    <hr>
+    <div>
+      <span>Total: </span>
+      <span></span>
+    </div>
+    <button type="submit" [disabled]="!formPag.valid" (click)="finalizarCompra()">Finalizar Compra</button>
   </div>
 
 </div>

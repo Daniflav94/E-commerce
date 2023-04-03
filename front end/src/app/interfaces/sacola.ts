@@ -1,9 +1,8 @@
 import { Produto } from "./produto";
+import { Produtos } from "./produtos";
 
 export interface Sacola {
   id: number;
-  produto: Produto;
-  quantidade: number;
-  selecionado?: boolean;
+  produtos: Produtos[]
   valorTotal: number;
 }
