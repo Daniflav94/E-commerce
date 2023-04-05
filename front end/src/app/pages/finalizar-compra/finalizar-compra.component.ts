@@ -6,6 +6,12 @@ import { Endereco } from 'src/app/interfaces/endereco';
 import { Sacola } from 'src/app/interfaces/sacola';
 import { NotificacaoService } from 'src/app/services/notificacao.service';
 import { ViaCepService } from 'src/app/services/via-cep.service';
+import {
+  calcularPrecoPrazo,
+  consultarCep,
+  rastrearEncomendas,
+} from 'correios-brasil';
+import { SacolaService } from 'src/app/services/sacola.service';
 
 @Component({
   selector: 'app-finalizar-compra',
@@ -17,6 +23,7 @@ export class FinalizarCompraComponent implements OnInit {
   ngOnInit(): void {
     this.calcularTotal()
     this.calcularParcelas()
+    this.calcularFrete()
   }
 
   formInfo: FormGroup
@@ -25,9 +32,15 @@ export class FinalizarCompraComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private apiCep: ViaCepService,
-    private notificacao: NotificacaoService
+    private notificacao: NotificacaoService,
+    private _sacolaService: SacolaService
 
   ) {
+    this._sacolaService.sacolaObs$.subscribe((resposta: Sacola) => {
+      this.produtosSacola = resposta
+      console.log(resposta)
+    })
+
     this.formInfo = fb.group({
       email: ['', [Validators.email, Validators.required]],
       nome: ['', Validators.required],
@@ -66,6 +79,7 @@ export class FinalizarCompraComponent implements OnInit {
   pagamento: boolean = false
   entrega: boolean = false
   valorTotal: string = ""
+  frete: string = ""
   totalComFrete: string = ""
   parcelas: any = {
     parcela1: 0,
@@ -76,31 +90,7 @@ export class FinalizarCompraComponent implements OnInit {
   produtosSacola: Sacola = {
     id: 1,
     valorTotal: 0,
-    produtos:
-      [{
-        produto: {
-          id: 1,
-          nome: "Teclado sem fio Logitech K480",
-          resumo: "Suporte Integrado para Smartphone e Tablet, Conexão Bluetooth Easy-Switch para até 3 dispositivos e Pilha Inclusa",
-          descricao: "O K480 é um teclado sem fio com conexão Bluetooth e Multi-Device exclusivo para o seu computador ... que também funciona com o seu tablet e smartphone. O Easy-Switch permite que você alterne a digitação facilmente entre 3 dispositivos sem fio Bluetooth conectados e a base integrada mantém seu telefone ou tablet no ângulo certo para você ler enquanto digita. Você encontrará um layout de teclado familiar com todas as teclas de atalho que você mais usa, quer esteja digitando em um computador Windows, Mac ou Chrome, ou em um tablet ou smartphone Android ou iOS.",
-          valor: 305.90,
-          fotos: ["assets/img/k380-multi-device-bluetooth-keyboard-_1__2.png"],
-          categoria: "Teclados"
-        },
-        quantidade: 1
-      },
-      {
-        produto: {
-          id: 2,
-          nome: "POP KEYS",
-          resumo: "Teclado mecânico sem fio com teclas emoji personalizáveis",
-          descricao: "Deixe a personalidade estourar na sua mesa e além com POP Keys. Junto com um mouse POP correspondente, deixe seu verdadeiro eu brilhar com uma estética de mesa impressionante e teclas de emoji personalizáveis e divertidas.",
-          valor: 764.90,
-          fotos: ["assets/img/pop-keys-gallery-daydream-1.webp", "assets/img/pop-keys-gallery-daydream-6.webp", "assets/img/pop-keys-gallery-daydream-2.webp"],
-          categoria: "Teclados"
-        },
-        quantidade: 2,
-      }]
+    produtos: []
 
   }
 
@@ -208,6 +198,10 @@ export class FinalizarCompraComponent implements OnInit {
   }
 
   finalizarCompra(){
+
+  }
+
+  calcularFrete() {
 
   }
 

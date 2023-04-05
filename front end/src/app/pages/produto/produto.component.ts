@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { SacolaService } from 'src/app/services/sacola.service';
 
 @Component({
   selector: 'app-produto',
@@ -12,7 +13,8 @@ export class ProdutoComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _sacolaService: SacolaService
   ){}
 
   ngOnInit(): void {
@@ -52,7 +54,10 @@ export class ProdutoComponent implements OnInit{
 
     trocarFoto(foto: string) {
       this.foto = foto
+    }
 
+    adicionarProduto() {
+      this._sacolaService.adicionarProduto(this.produto, this.quantidadeProduto)
     }
 
 

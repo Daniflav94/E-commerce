@@ -46,7 +46,8 @@ registerLocaleData(ptBr);
     FormsModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+
 
   ],
   providers: [

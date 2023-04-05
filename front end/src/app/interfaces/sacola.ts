@@ -2,7 +2,7 @@ import { Produto } from "./produto";
 import { Produtos } from "./produtos";
 
 export interface Sacola {
-  id: number;
+  id?: number;
   produtos: Produtos[]
   valorTotal: number;
 }
