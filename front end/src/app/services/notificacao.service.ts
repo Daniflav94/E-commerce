@@ -12,7 +12,7 @@ export class NotificacaoService {
     this.snackbar.open(message,'fechar',{
       duration:3000,
       horizontalPosition:'center',
-      verticalPosition:"top",
+      verticalPosition:"bottom",
       panelClass: ['warning']
     })
   }

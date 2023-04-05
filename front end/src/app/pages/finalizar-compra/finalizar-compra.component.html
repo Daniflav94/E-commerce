@@ -166,7 +166,7 @@
             </div>
           </form>
         </div>
-        <form [formGroup]="formPag">
+        <form [formGroup]="formPag" *ngIf="formaPagamento == 'cartao'">
           <div>
             <label for="numero">Número do cartão</label>
             <input type="text" name="numero" mask="0000 0000 0000 0000" formControlName="numero" (keydown)="verificarBandeira()" [ngClass]="[formPag.get('numero')?.errors?.['required'] && formInfo.get('numero')?.touched? 'input-erro' : 'input']">
@@ -193,7 +193,7 @@
           </div>
           <div>
             <label for="nomeCartao" >Nome impresso no cartão</label>
-            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
+            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched? 'input-erro' : 'input']">
             <div class="erro" *ngIf="formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched">Campo
               obrigatório.</div>
           </div>
@@ -280,21 +280,23 @@
         </div>
       </div>
     </div>
-    <div class="valor-total">
+    <div class="valores">
       <span>Subtotal: </span>
       <span>{{valorTotal}}</span>
     </div>
     <hr>
-    <div>
+    <div class="valores">
       <span>Entrega normal: </span>
-      <span></span>
+      <span *ngIf="frete == ''">À calcular</span>
+      <span *ngIf="frete != ''">{{totalComFrete}}</span>
     </div>
     <hr>
-    <div>
+    <div class="valores">
       <span>Total: </span>
-      <span></span>
+      <span *ngIf="totalComFrete == ''">À calcular</span>
+      <span *ngIf="totalComFrete != ''">{{totalComFrete}}</span>
     </div>
-    <button type="submit" [disabled]="!formPag.valid" (click)="finalizarCompra()">Finalizar Compra</button>
+    <button type="submit" *ngIf="formPag.valid" (click)="finalizarCompra()">Finalizar Compra</button>
   </div>
 
 </div>

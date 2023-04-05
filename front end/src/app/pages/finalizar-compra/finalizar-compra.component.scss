@@ -164,11 +164,13 @@ nav {
           margin-right: 10px;
         }
       }
+
     }
 
-    .valor-total{
+    .valores{
       display: flex;
       justify-content: space-between;
+      font-size: 15px;
     }
 
     hr{
@@ -237,7 +239,7 @@ nav {
   }
 
   form{
-    margin: 10px 0;
+    margin: 5px 0;
 
     div{
       display: flex;

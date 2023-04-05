@@ -24,11 +24,22 @@ mat-sidenav {
 
 mat-nav-list{
   padding: 0;
+
+  h5{
+    color: rgb(95, 95, 95);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 200px;
+  }
+
+  p{
+    text-align: center;
+    padding: 0 50px;
+    margin-top: 20px;
+    color: rgb(143, 143, 143);
+  }
 }
 
-.primeira-linha{
-  padding: 10px 0;
-}
 
 hr{
   width: 95%;
@@ -40,7 +51,7 @@ hr{
 }
 
 
-h5{
+h4{
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -61,7 +72,7 @@ h5{
   padding: 0 10px;
   box-sizing: border-box;
 
-  img{
+  .foto-produto{
     width: 130px;
     height: 100px;
     object-fit: contain;
@@ -69,12 +80,17 @@ h5{
 
   }
 
+  .lixeira{
+    width: 22px;
+    height: 22px;
+  }
+
   .infos{
     display: flex;
     flex-direction: column;
+    width: 220px;
 
     .nome{
-      width: 200px;
       white-space: nowrap;
       overflow: hidden !important;
       text-overflow: ellipsis;

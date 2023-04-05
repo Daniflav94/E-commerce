@@ -1,11 +1,13 @@
 <mat-sidenav-container>
   <mat-sidenav #drawer mode="over" position="end">
     <mat-nav-list>
-      <h5>MINHA SACOLA</h5>
-      <div class="produtos">
+      <h4>MINHA SACOLA</h4>
+      <h5 *ngIf="produtosSacola.produtos.length == 0">Sua sacola está vazia!</h5>
+      <p *ngIf="produtosSacola.produtos.length == 0">Para inserir produtos em sua sacola, basta navegar pela webstore ou utilizar a busca, e ao encontrar os produtos desejados, clique no botão 'Adicionar à sacola'.</p>
+      <div class="produtos" *ngIf="produtosSacola.produtos.length != 0">
         <div class="produto" *ngFor="let produto of produtosSacola.produtos">
           <hr>
-          <img [src]="produto.produto.fotos[0]">
+          <img [src]="produto.produto.fotos[0]" class="foto-produto">
           <div class="infos">
             <span class="nome">{{produto.produto.nome}}</span>
             <span class="valor">{{produto.produto.valor | currency : 'BRL'}}</span>
@@ -18,13 +20,14 @@
               </div>
             </div>
           </div>
+          <img src="/assets/icons/lixeira-de-reciclagem.png" class="lixeira" (click)="removerProduto(produto.produto.id)">
         </div>
       </div>
-      <div class="valor-total">
+      <div class="valor-total" *ngIf="produtosSacola.produtos.length != 0">
         <span>Total:</span>
-        <span>{{valorTotal}}</span>
+        <span>{{produtosSacola.valorTotal | currency : 'BRL'}}</span>
       </div>
-      <button class="btn-finalizar">Finalizar compra</button>
+      <a routerLink="/finalizarCompra"><button class="btn-finalizar" *ngIf="produtosSacola.produtos.length != 0">Finalizar compra</button></a>
     </mat-nav-list>
   </mat-sidenav>
 
