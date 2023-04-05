@@ -193,7 +193,7 @@
           </div>
           <div>
             <label for="nomeCartao" >Nome impresso no cartão</label>
-            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formInfo.get('nome')?.touched? 'input-erro' : 'input']">
+            <input type="text" name="nomeCartao" formControlName="nome" [ngClass]="[formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched? 'input-erro' : 'input']">
             <div class="erro" *ngIf="formPag.get('nome')?.errors?.['required'] && formPag.get('nome')?.touched">Campo
               obrigatório.</div>
           </div>

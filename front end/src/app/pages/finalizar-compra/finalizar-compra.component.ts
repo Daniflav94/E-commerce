@@ -63,7 +63,7 @@ export class FinalizarCompraComponent implements OnInit {
 
   entregaValida: boolean = false
   informacoesValidas: boolean = false
-  pagamento: boolean = true
+  pagamento: boolean = false
   entrega: boolean = false
   valorTotal: string = ""
   totalComFrete: string = ""
