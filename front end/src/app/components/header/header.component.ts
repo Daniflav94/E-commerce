@@ -81,4 +81,14 @@ export class HeaderComponent implements OnInit{
     this.pesquisa = false
     this.nomePesquisa = ''
   }
+
+  criarCategoria(){
+    const categoria = {
+      category: "Mouses",
+      description: "Mouses para computadores"
+    }
+    this.produtoService.criarCategoria(categoria).subscribe(resposta => {
+      console.log(resposta)
+    })
+  }
 }

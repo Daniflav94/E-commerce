@@ -16,17 +16,19 @@ export class CategoriasComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.inicializarCategoria()
+    //this.inicializarCategoria()
   }
 
   produtos: Produto[] = []
 
-  inicializarCategoria():void {
+  /* inicializarCategoria():void {
     const categoria  = this.route.snapshot.params["categoria"]
     console.log(categoria)
     this.produtoService.listarPorCategoria(categoria).subscribe(lista => {
       this.produtos = lista
     })
-  }
+  } */
+
+
 
 }

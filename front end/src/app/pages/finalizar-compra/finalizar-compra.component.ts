@@ -81,17 +81,12 @@ export class FinalizarCompraComponent implements OnInit {
   valorTotal: string = ""
   frete: string = ""
   totalComFrete: string = ""
-  parcelas: any = {
-    parcela1: 0,
-    parcela2: 0,
-    parcela3: 0,
-    parcela4: 0
-  }
+  parcelas: string[] = []
+
   produtosSacola: Sacola = {
     id: 1,
     valorTotal: 0,
     produtos: []
-
   }
 
 
@@ -152,10 +147,9 @@ export class FinalizarCompraComponent implements OnInit {
   }
 
   calcularParcelas() {
-    this.parcelas.parcela1 = (this.produtosSacola.valorTotal).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
-    this.parcelas.parcela2 = (this.produtosSacola.valorTotal / 2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
-    this.parcelas.parcela3 = (this.produtosSacola.valorTotal / 3).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
-    this.parcelas.parcela4 = (this.produtosSacola.valorTotal / 4).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
+    for (let index = 1; index <= 10; index++) {
+      this.parcelas.push((this.produtosSacola.valorTotal / index).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string)
+    }
     }
 
 
