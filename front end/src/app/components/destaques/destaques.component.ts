@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { SacolaService } from 'src/app/services/sacola.service';
 
 @Component({
   selector: 'app-destaques',
@@ -13,18 +14,23 @@ export class DestaquesComponent implements OnInit{
   @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
 
   constructor(
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _sacolaService: SacolaService
   ){}
 
   ngOnInit(): void {
-    this.listarProdutos()
+    //this.listarProdutos()
   }
 
 
-  listarProdutos():void {
+  /* listarProdutos():void {
     this.produtoService.listarDestaques().subscribe(lista => {
       this.destaques  = lista
     })
+  } */
+
+  adicionarProduto(produto: Produto, quantidade: number) {
+    this._sacolaService.adicionarProduto(produto, quantidade)
   }
 
   destaques: Produto[] = [

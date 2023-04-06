@@ -183,10 +183,16 @@
           <div>
             <select formControlName="parcelas" >
               <option value="" disabled selected>Quantidade de parcelas</option>
-              <option value="1">Á vista - {{parcelas.parcela1}}</option>
-              <option value="2">2x {{parcelas.parcela2}} sem juros</option>
-              <option value="3">3x {{parcelas.parcela3}} sem juros</option>
-              <option value="4">4x {{parcelas.parcela4}} sem juros</option>
+              <option value="1">Á vista - {{parcelas[0]}}</option>
+              <option value="2">2x {{parcelas[1]}} sem juros</option>
+              <option value="3">3x {{parcelas[2]}} sem juros</option>
+              <option value="4">4x {{parcelas[3]}} sem juros</option>
+              <option value="5">5x {{parcelas[4]}} sem juros</option>
+              <option value="6">6x {{parcelas[5]}} sem juros</option>
+              <option value="7">7x {{parcelas[6]}} sem juros</option>
+              <option value="8">8x {{parcelas[7]}} sem juros</option>
+              <option value="9">9x {{parcelas[8]}} sem juros</option>
+              <option value="10">10x {{parcelas[9]}} sem juros</option>
             </select>
             <div class="erro" *ngIf="formPag.get('parcelas')?.errors?.['required'] && formPag.get('parcelas')?.touched">Campo
               obrigatório.</div>
