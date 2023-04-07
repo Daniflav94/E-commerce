@@ -59,11 +59,12 @@ def edit_product(request, pk):
 
 @csrf_exempt
 def create_product_category(request):
+    category = request.POST.get('category', None)
     data = request.POST.copy()
 
-    if data['category']:
+    if category:
         try:
-            cat = ProductCategory.objects.get(category=data['category'])
+            cat = ProductCategory.objects.get(category=category)
             form = ProductCategoryForm(instance=cat, data=data)
             if form.is_valid():
                 form.save()
