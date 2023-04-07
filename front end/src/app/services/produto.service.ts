@@ -12,12 +12,12 @@ export class ProdutoService {
 
   private readonly API = `${API_URL.baseUrl}`
 
-  headers = {
+  /* headers = {
     headers: new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded",
       Accept: "aplication/json"
     })
-  };
+  }; */
 
   constructor(
     private httpClient: HttpClient
@@ -29,8 +29,8 @@ export class ProdutoService {
   }
 
   criarCategoria(categoria: Categoria) {
-
-    return this.httpClient.post<any>(`${this.API}/adm/create_product_category`, categoria, this.headers).pipe(
+    console.log(categoria, "imprimindo categoria no service")
+    return this.httpClient.post<Categoria>(`${this.API}/adm/create_product_category`, categoria, {headers: new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY

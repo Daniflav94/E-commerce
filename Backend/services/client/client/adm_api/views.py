@@ -61,8 +61,11 @@ def edit_product(request, pk):
 def create_product_category(request):
     category = request.POST.get('category', None)
     data = request.POST.copy()
-
+    print(data)
+    print("oi")
     if category:
+        print(category)
+        print(category)
         try:
             cat = ProductCategory.objects.get(category=category)
             form = ProductCategoryForm(instance=cat, data=data)

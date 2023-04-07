@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { SacolaService } from 'src/app/services/sacola.service';
 
 @Component({
   selector: 'app-lancamentos',
@@ -10,7 +11,8 @@ import { ProdutoService } from 'src/app/services/produto.service';
 export class LancamentosComponent implements OnInit{
 
   constructor(
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private _sacolaService: SacolaService
   ){}
 
   ngOnInit(): void {
@@ -100,6 +102,10 @@ export class LancamentosComponent implements OnInit{
       categoria: "Teclados"
     },
   ]
+
+  adicionarProduto(produto: Produto, quantidade: number) {
+    this._sacolaService.adicionarProduto(produto, quantidade)
+  }
 
   listarProdutos():void {
     this.produtoService.listarNovidades().subscribe(lista => {

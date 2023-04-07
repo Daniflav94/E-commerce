@@ -150,9 +150,15 @@ nav {
       .produto{
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
 
         .infos{
-          font-size: 14px;
+          font-size: 13.5px;
+
+          .nome{
+            margin-bottom: 10px;
+            font-weight: 500;
+          }
 
           .qnt{
             color: gray;

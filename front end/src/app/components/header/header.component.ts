@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from 'src/app/interfaces/categoria';
 import { Produto } from 'src/app/interfaces/produto';
 import { Produtos } from 'src/app/interfaces/produtos';
 import { Sacola } from 'src/app/interfaces/sacola';
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit{
   ){
     this._sacolaService.sacolaObs$.subscribe((resposta: Sacola) => {
       this.produtosSacola = resposta
-      console.log(resposta)
+
     })
   }
 
@@ -39,6 +40,10 @@ export class HeaderComponent implements OnInit{
   valorTotal: string = ""
   produtosPesquisa: Produto[] = []
   nomePesquisa: string = ""
+  categoria: Categoria = {
+    category: '',
+    description: ''
+  }
 
   atualizarSacola(id: number, quantidade: number): void {
     this._sacolaService.atualizarSacola(id, quantidade)
@@ -52,7 +57,7 @@ export class HeaderComponent implements OnInit{
   }
 
   subtrairQuantidade(produto: Produtos) {
-    if(produto.quantidade > 0){
+    if(produto.quantidade > 1){
       produto.quantidade--
       this.atualizarSacola(produto.produto.id, produto.quantidade)
 
@@ -83,11 +88,10 @@ export class HeaderComponent implements OnInit{
   }
 
   criarCategoria(){
-    const categoria = {
-      category: "Mouses",
-      description: "Mouses para computadores"
-    }
-    this.produtoService.criarCategoria(categoria).subscribe(resposta => {
+    this.categoria.category = "mouses"
+    this.categoria.description = "mouses para computadores"
+    console.log(this.categoria)
+    this.produtoService.criarCategoria(this.categoria).subscribe(resposta => {
       console.log(resposta)
     })
   }
