@@ -23,9 +23,20 @@ export class ProdutoService {
     private httpClient: HttpClient
   ) { }
 
-  criarProduto(produto: Produto) {
-
-    return this.httpClient.post(`${this.API}/adm/create_new_product`, produto)
+  criarProduto() {
+    const params = new HttpParams()
+      .set('name', 'Teclado sem fio Logitech K480')
+      .set('picture_url', 'k380-multi-device-bluetooth-keyboard-_1__2.png')
+      .set('description', 'O K480 é um teclado sem fio com conexão Bluetooth e Multi-Device exclusivo para o seu computador ... que também funciona com o seu tablet e smartphone. O Easy-Switch permite que você alterne a digitação facilmente entre 3 dispositivos sem fio Bluetooth conectados e a base integrada mantém seu telefone ou tablet no ângulo certo para você ler enquanto digita. Você encontrará um layout de teclado familiar com todas as teclas de atalho que você mais usa, quer esteja digitando em um computador Windows, Mac ou Chrome, ou em um tablet ou smartphone Android ou iOS.')
+      .set('price', '305.90')
+      .set('is_available', 'True')
+      .set('category', '1')
+    return this.httpClient.post<Produto>(`${this.API}/adm/create_new_product`, params, {headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })}).pipe(
+      catchError(error => {
+        console.error(error)
+        return EMPTY
+      })
+    )
   }
 
   criarCategoria(categoria: Categoria) {
