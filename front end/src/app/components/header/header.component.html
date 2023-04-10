@@ -7,10 +7,10 @@
       <div class="produtos" *ngIf="produtosSacola.produtos.length != 0">
         <div class="produto" *ngFor="let produto of produtosSacola.produtos">
           <hr>
-          <img [src]="produto.produto.fotos[0]" class="foto-produto">
+          <img [src]="produto.produto.picture_url[0]" class="foto-produto">
           <div class="infos">
-            <span class="nome">{{produto.produto.nome}}</span>
-            <span class="valor">{{produto.produto.valor | currency : 'BRL'}}</span>
+            <span class="nome">{{produto.produto.name}}</span>
+            <span class="valor">{{produto.produto.price | currency : 'BRL'}}</span>
             <div class="qnt">
               <span>Quantidade:</span>
               <div class="btn-qnt">
@@ -57,7 +57,7 @@
 
     <div class="categorias mat-elevation-z4">
       <ul>
-        <a [routerLink]="'/categorias/' + 'teclados' " (click)="atualizar('teclados')" (click)="criarCategoria()"><li>TECLADOS</li></a>
+        <a [routerLink]="'/categorias/' + 'teclados' " (click)="atualizar('teclados')"><li>TECLADOS</li></a>
         <a [routerLink]="'/categorias/' + 'mouses' "(click)="atualizar('mouses')"><li>MOUSES</li></a>
         <a [routerLink]="'/categorias/' + 'webcams' "(click)="atualizar('webcams')"><li>WEBCAMS</li></a>
         <a [routerLink]="'/categorias/' + 'audio' "(click)="atualizar('audio')"><li>ÁUDIO</li></a>
