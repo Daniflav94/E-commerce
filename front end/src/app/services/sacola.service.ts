@@ -28,12 +28,12 @@ export class SacolaService {
     const prod = {
       produto: {
         id: produto.id,
-        nome: produto.nome,
+        name: produto.name,
         resumo: produto.resumo,
-        descricao: produto.descricao,
-        valor: produto.valor,
-        fotos: produto.fotos,
-        categoria: produto.categoria,
+        description: produto.description,
+        price: produto.price,
+        picture_url: produto.picture_url,
+        category: produto.category,
       },
       quantidade: quantidade
     }
@@ -101,7 +101,7 @@ export class SacolaService {
   getTotal(): number {
     let total = 0
     this.sacola.produtos.forEach(
-      (prod) => (total += prod.produto.valor * prod.quantidade)
+      (prod) => (total += prod.produto.price * prod.quantidade)
     )
     return total
   }

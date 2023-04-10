@@ -1,9 +1,10 @@
 export interface Produto {
   id: number;
-  nome: string;
-  valor: number;
-  descricao: string;
+  name: string;
+  price: number;
+  description: string;
   resumo: string;
-  fotos: string[];
-  categoria: string;
+  picture_url: string[];
+  category: string;
+  is_available?: boolean
 }

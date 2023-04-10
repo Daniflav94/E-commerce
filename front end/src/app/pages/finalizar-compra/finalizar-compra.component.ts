@@ -93,7 +93,7 @@ export class FinalizarCompraComponent implements OnInit {
   calcularTotal() {
     let total: number = 0
     this.produtosSacola.produtos.forEach(prod => {
-      total += (prod.produto.valor * prod.quantidade)
+      total += (prod.produto.price * prod.quantidade)
       this.produtosSacola.valorTotal = total
       this.valorTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) as string
     })

@@ -3,24 +3,24 @@
     <div class="container">
   <span class="caminho">
     /
-    <span>{{produto.categoria}}</span>
+    <span>{{produto.category}}</span>
     /
-    <strong> {{produto.nome}}</strong>
+    <strong> {{produto.name}}</strong>
   </span>
   <div class="produto">
     <section class="fotos">
       <img [src]="foto" alt="" class="foto-principal">
       <div class="outras-fotos">
-        <img [src]="produto.fotos[0]" (click)="trocarFoto(produto.fotos[0])" [ngClass]="{'ativa': foto != produto.fotos[0]}">
-        <img [src]="produto.fotos[1]" (click)="trocarFoto(produto.fotos[1])"[ngClass]="{'ativa': foto != produto.fotos[1]}">
-        <img [src]="produto.fotos[2]" (click)="trocarFoto(produto.fotos[2])"[ngClass]="{'ativa': foto != produto.fotos[2]}">
-        <img [src]="produto.fotos[3]" (click)="trocarFoto(produto.fotos[3])"[ngClass]="{'ativa': foto != produto.fotos[3]}">
+        <img [src]="produto.picture_url[0]" (click)="trocarFoto(produto.picture_url[0])" [ngClass]="{'ativa': foto != produto.picture_url[0]}">
+        <img [src]="produto.picture_url[1]" (click)="trocarFoto(produto.picture_url[1])"[ngClass]="{'ativa': foto != produto.picture_url[1]}">
+        <img [src]="produto.picture_url[2]" (click)="trocarFoto(produto.picture_url[2])"[ngClass]="{'ativa': foto != produto.picture_url[2]}">
+        <img [src]="produto.picture_url[3]" (click)="trocarFoto(produto.picture_url[3])"[ngClass]="{'ativa': foto != produto.picture_url[3]}">
       </div>
     </section>
     <section class="infos">
-      <h1>{{produto.nome}}</h1>
+      <h1>{{produto.name}}</h1>
       <p>{{produto.resumo}}</p>
-      <span class="valor">{{produto.valor  | currency : 'BRL'}}</span>
+      <span class="valor">{{produto.price  | currency : 'BRL'}}</span>
       <div class="botoes">
         <div>
           <button class="btnMenos"(click)="subtrairQuantidade()">-</button>
@@ -39,7 +39,7 @@
             Descrição
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>{{produto.descricao}}</p>
+        <p>{{produto.description}}</p>
       </mat-expansion-panel>
     </section>
 

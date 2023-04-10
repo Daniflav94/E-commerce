@@ -29,8 +29,11 @@ export class ProdutoService {
   }
 
   criarCategoria(categoria: Categoria) {
-    console.log(categoria, "imprimindo categoria no service")
-    return this.httpClient.post<Categoria>(`${this.API}/adm/create_product_category`, categoria, {headers: new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
+    const params = new HttpParams()
+      .set('category', categoria.category)
+      .set('description', categoria.description)
+
+    return this.httpClient.post<Categoria>(`${this.API}/adm/create_product_category`, params, {headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY

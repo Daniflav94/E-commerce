@@ -11,9 +11,9 @@
       </ng-template>
       <ng-container *ngFor="let produto of destaques" class="container">
         <div class="card">
-          <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.fotos[0]"></a>
-          <span class="nome">{{ produto.nome }}</span>
-          <span class="valor">{{ produto.valor  | currency : 'BRL'}}</span>
+          <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.picture_url[0]"></a>
+          <span class="nome">{{ produto.name }}</span>
+          <span class="valor">{{ produto.price  | currency : 'BRL'}}</span>
           <button (click)="adicionarProduto(produto, 1)">
             <img src="/assets/icons/sacola-de-compras.png">
             <span>Adicionar à sacola</span>
