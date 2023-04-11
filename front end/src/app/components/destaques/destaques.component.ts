@@ -24,17 +24,6 @@ export class DestaquesComponent implements OnInit{
   }
 
 
-  listarProdutos():void {
-    this.produtoService.listarProdutos().subscribe(lista => {
-      this.destaques = lista.products
-      console.log(this.destaques)
-    })
-  }
-
-  adicionarProduto(produto: Produto, quantidade: number) {
-    this._sacolaService.adicionarProduto(produto, quantidade)
-  }
-
   destaques: Produto[] = []
     /* {
       id: 1,
@@ -229,5 +218,14 @@ export class DestaquesComponent implements OnInit{
       category: "Teclados"
     },
   ] */
+  listarProdutos():void {
+    this.produtoService.listarProdutos().subscribe(lista => {
+      this.destaques = lista.products
+      console.log(this.destaques)
+    })
+  }
 
+  adicionarProduto(produto: Produto, quantidade: number) {
+    this._sacolaService.adicionarProduto(produto, quantidade)
+  }
 }

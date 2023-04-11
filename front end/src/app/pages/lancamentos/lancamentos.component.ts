@@ -16,7 +16,7 @@ export class LancamentosComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    //this.listarProdutos()
+    this.listarProdutos()
   }
 
   lancamentos: Produto[] = []
@@ -24,6 +24,13 @@ export class LancamentosComponent implements OnInit{
 
   adicionarProduto(produto: Produto, quantidade: number) {
     this._sacolaService.adicionarProduto(produto, quantidade)
+  }
+
+  listarProdutos():void {
+    this.produtoService.listarProdutos().subscribe(lista => {
+      this.lancamentos = lista.products
+      console.log(this.lancamentos)
+    })
   }
 
   /* listarProdutos():void {
