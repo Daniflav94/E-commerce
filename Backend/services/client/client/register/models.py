@@ -138,7 +138,7 @@ class Products(AbstractBaseModel):
     def to_product_json(self):
         return {
             'id': self.pk,
-            'picture': self.picture_url,
+            'picture_url': self.picture_url,
             'name': self.name,
             'description': self.description,
             'category': self.category.pk,
