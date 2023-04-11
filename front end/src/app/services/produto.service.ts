@@ -4,6 +4,7 @@ import { catchError, EMPTY } from 'rxjs';
 import { Produto } from '../interfaces/produto';
 import { Categoria } from '../interfaces/categoria';
 import { API_URL } from 'src/config';
+import { ListaProdutos } from '../interfaces/listaProdutos';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,7 @@ export class ProdutoService {
     const params = new HttpParams()
       .set('skip', '0')
       .set('take', '10')
-    return this.httpClient.get<Produto[]>(`${this.API}/core/get_products?pk=1`, {params}).pipe(
+    return this.httpClient.get<ListaProdutos>(`${this.API}/core/get_products?pk=1`, {params}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY

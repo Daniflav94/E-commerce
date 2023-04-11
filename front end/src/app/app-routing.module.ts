@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
+import { CriarProdutoComponent } from './pages/adm/criar-produto/criar-produto.component';
 
 const rotas: Routes = [
   {
@@ -36,6 +37,10 @@ const rotas: Routes = [
   {
     path: 'finalizarCompra',
     component: FinalizarCompraComponent
+  },
+  {
+    path: 'adm/criar-produto',
+    component: CriarProdutoComponent
   }
 ];
 

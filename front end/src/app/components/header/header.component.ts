@@ -15,10 +15,10 @@ import { SacolaService } from 'src/app/services/sacola.service';
 export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
-    this.produtoService.criarProduto().subscribe(resposta => {
+   /*  this.produtoService.criarProduto().subscribe(resposta => {
       console.log(resposta)
     }
-    )
+    ) */
   }
 
   produtosSacola: Sacola = {

@@ -7,7 +7,7 @@
       <div class="produtos" *ngIf="produtosSacola.produtos.length != 0">
         <div class="produto" *ngFor="let produto of produtosSacola.produtos">
           <hr>
-          <img [src]="produto.produto.picture_url[0]" class="foto-produto">
+          <img [src]="produto.produto.picture_url" class="foto-produto">
           <div class="infos">
             <span class="nome">{{produto.produto.name}}</span>
             <span class="valor">{{produto.produto.price | currency : 'BRL'}}</span>

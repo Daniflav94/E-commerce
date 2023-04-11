@@ -1,0 +1,68 @@
+<nav class="desktop mat-elevation-z4">
+  <ul>
+    <li>
+      <a routerLink="/home">
+        <img src="/assets/img/devs-logo-branco.png" class="logo">
+      </a>
+    </li>
+  </ul>
+</nav>
+<section class="container">
+  <h2>Adicionar produto</h2>
+  <form [formGroup]="formProd">
+    <div>
+      <label for="name">Nome do produto</label>
+      <input type="text" name="name" required formControlName="name"
+        [ngClass]="[formProd.get('name')?.errors?.['required'] && formProd.get('name')?.touched? 'input-erro' : 'input']">
+      <div class="erro" *ngIf="formProd.get('name')?.errors?.['required'] && formProd.get('name')?.touched">Campo
+        obrigatório.</div>
+    </div>
+    <div>
+      <label for="resume">Resumo</label>
+      <input type="text" name="resume" required formControlName="resume"
+        [ngClass]="[formProd.get('resume')?.errors?.['required'] && formProd.get('resume')?.touched? 'input-erro' : 'input']">
+      <div class="erro" *ngIf="formProd.get('resume')?.errors?.['required'] && formProd.get('resume')?.touched">Campo
+        obrigatório.</div>
+    </div>
+    <div>
+      <label for="description">Descrição</label>
+      <input type="text" name="description" required formControlName="description"
+        [ngClass]="[formProd.get('description')?.errors?.['required'] && formProd.get('description')?.touched? 'input-erro' : 'input']">
+      <div class="erro"
+        *ngIf="formProd.get('description')?.errors?.['required'] && formProd.get('description')?.touched">Campo
+        obrigatório.</div>
+    </div>
+    <div>
+      <label for="picture_url">Foto principal</label>
+      <input #imageInput type="file" accept="image/*" name="picture_url" required formControlName="picture_url" class="input-foto" (change)="uploadFile($event)">
+      <div class="erro"
+        *ngIf="formProd.get('picture_url')?.errors?.['required'] && formProd.get('picture_url')?.touched">Campo
+        obrigatório.
+      </div>
+      <img [src]="fotoURL" width="80px">
+    </div>
+    <div class="dual-input">
+      <div>
+        <label for="price">Preço</label>
+        <input type="text" name="price" mask="0*.00" placeholder="ex: 540.90" required formControlName="price"
+          [ngClass]="[formProd.get('price')?.errors?.['required'] && formProd.get('price')?.touched? 'input-erro' : 'input']">
+        <div class="erro"
+          *ngIf="formProd.get('price')?.errors?.['required'] && formProd.get('price')?.touched">Campo
+          obrigatório.</div>
+      </div>
+      <div>
+        <span>Categoria</span>
+        <select formControlName="category" required
+          [ngClass]="[formProd.get('category')?.errors?.['required'] && formProd.get('category')?.touched? 'input-erro' : 'select']">
+          <option value="teclados">Teclados</option>
+          <option value="mouses">Mouses</option>
+          <option value="webcams">Webcams</option>
+          <option value="audio">Áudio</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button type="submit" [disabled]="!formProd.valid" (click)="criarProduto()">Adicionar</button>
+  </form>
+</section>
