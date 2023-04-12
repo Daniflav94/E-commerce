@@ -40,6 +40,7 @@ export class CriarProdutoComponent {
       this.produtoService.criarProduto(produto).subscribe(() => {
         this.notificacao.showmessage("Produto criado!")
         this.formProd.reset()
+        this.fotoURL = ''
       })
     }
 

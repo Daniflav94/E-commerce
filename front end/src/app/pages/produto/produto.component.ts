@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
+import { ProdutoAPI } from 'src/app/interfaces/produto-api';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { SacolaService } from 'src/app/services/sacola.service';
 
@@ -19,39 +20,40 @@ export class ProdutoComponent implements OnInit{
 
   ngOnInit(): void {
     this.inicializarProduto()
-    this.adicionarFotosProduto()
+
   }
 
   produto: Produto =
   {
-    id: 2,
-    name: "POP KEYS",
-    resume: "Teclado mecânico sem fio com teclas emoji personalizáveis",
-    description: "Deixe a personalidade estourar na sua mesa e além com POP Keys. Junto com um mouse POP correspondente, deixe seu verdadeiro eu brilhar com uma estética de mesa impressionante e teclas de emoji personalizáveis e divertidas.",
-    price: 764.90,
-    picture_url: "assets/img/pop keys-1.png",
-    category: "Teclados"
+    id: 0,
+    name: "",
+    resume: "",
+    description: "",
+    price: 0,
+    picture_url: "",
+    category: ""
   }
 
-    foto: string = this.produto.picture_url
+    foto: string = ''
     picture_url: string[] = []
     quantidadeProduto: number =  1
 
     inicializarProduto():void {
       const idProduto = this.route.snapshot.params["id"]
       this.produtoService.buscarPorId(idProduto).subscribe(produto => {
-        this.produto = produto
-        this.adicionarFotosProduto()
+        this.produto = produto.products
+        this.foto = produto.products.picture_url
+
+        const nomeProduto = (this.produto.name).toLowerCase()
+        for (let index = 2; index <= 3; index++) {
+        const caminhoFoto = `assets/img/${nomeProduto}-${index}.png`
+          this.picture_url.push(caminhoFoto)
+
+        }
+        console.log(this.picture_url)
       })
     }
 
-    adicionarFotosProduto(){
-      const nomeProduto = (this.produto.name).toLowerCase()
-      for (let index = 2; index <= 4; index++) {
-        const caminhoFoto = `assets/img/${nomeProduto}-${index}.png`
-          this.picture_url.push(caminhoFoto)
-        }
-    }
 
     somarQuantidade() {
       this.quantidadeProduto++
