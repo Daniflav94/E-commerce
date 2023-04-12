@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxGlideComponent } from 'ngx-glide/lib/ngx-glide.component';
+import { ListaProdutos } from 'src/app/interfaces/listaProdutos';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { SacolaService } from 'src/app/services/sacola.service';
@@ -19,22 +20,40 @@ export class DestaquesComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    //this.listarProdutos()
+    this.listarProdutos()
   }
 
-
-  /* listarProdutos():void {
-    this.produtoService.listarDestaques().subscribe(lista => {
-      this.destaques  = lista
+  listarProdutos():void {
+    this.produtoService.listarProdutos().subscribe(lista => {
+      this.destaques = lista.products
+      console.log(this.destaques)
     })
-  } */
+  }
 
   adicionarProduto(produto: Produto, quantidade: number) {
     this._sacolaService.adicionarProduto(produto, quantidade)
   }
 
-  destaques: Produto[] = [
-    {
+  inicio: number = 0
+  final: number = 4
+
+
+  destaques: Produto[] = []
+
+  voltar() {
+    if (this.inicio != 0 && this.final != 4) {
+      this.inicio -= 4
+      this.final -= 4
+    }
+  }
+
+  avancar() {
+    if (this.final < this.destaques.length) {
+      this.inicio += 4
+      this.final += 4
+    }
+  }
+    /* {
       id: 1,
       name: "Teclado sem fio Logitech K480",
       resumo: "Suporte Integrado para Smartphone e Tablet, Conexão Bluetooth Easy-Switch para até 3 dispositivos e Pilha Inclusa",
@@ -223,9 +242,9 @@ export class DestaquesComponent implements OnInit{
       resumo: "Teclado Mecânico Gamer Logitech G413 TKL SE - Preto",
       description: "Melhore sua experiência de jogo com o Teclado Mecânico Gamer Logitech G413 TKL SE. Proporcionando uma experiência de jogo aprimorada com switch mecânico, ele foi projetado para ajudar os jogadores a terem um desempenho superior e a se esforçarem ainda mais. O G413 TKL SE possui switches mecânicos tactile; teclas PBT; 6 teclas de desempenho anti-ghosting; um top case de alumínio escovado em preto com iluminação LED branca; 12 teclas FN e tecnologia com fio USB - tudo ao seu alcance. Disponível também na versao padrão com 104 teclas. As primeiras características do jogo são as que você precisa para colocar um desempenho melhor ao seu alcance. Um teclado projetado para performance. Um teclado Made for Play.",
       price: 549.90,
-      picture_url: "assets/img/teclado1-1.png", 
+      picture_url: "assets/img/teclado1-1.png",
       category: "Teclados"
     },
-  ]
+  ] */
 
 }

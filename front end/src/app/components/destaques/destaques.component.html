@@ -3,28 +3,29 @@
     <h2>Destaques</h2>
   </div>
 
-    <ngx-glide [arrowLeftTemplate]="arrowLeftTemplate" [arrowRightTemplate]="arrowRightTemplate" [perView]="4" [showBullets]="false">
-      <ng-template #arrowLeftTemplate>
-        <div class="custom-arrow custom-arrow-left">
-          <button class="btn-seta"><img src="/assets/icons/seta-esquerda.png" width="16px"></button>
-        </div>
-      </ng-template>
-      <ng-container *ngFor="let produto of destaques" class="container">
-        <div class="card">
-          <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.picture_url[0]"></a>
-          <span class="nome">{{ produto.name }}</span>
-          <span class="valor">{{ produto.price  | currency : 'BRL'}}</span>
-          <button (click)="adicionarProduto(produto, 1)">
-            <img src="/assets/icons/sacola-de-compras.png">
-            <span>Adicionar à sacola</span>
-          </button>
-        </div>
-      </ng-container>
-      <ng-template #arrowRightTemplate>
-        <div class="custom-arrow custom-arrow-right">
-          <button class="btn-seta"><img src="/assets/icons/seta-direita.png" width="16px"></button>
-        </div>
-      </ng-template>
-    </ngx-glide>
+  <div class="cards">
+    <button class="seta-esquerda"  (click)="voltar()">
+      <mat-icon class="material-symbols-outlined">
+        arrow_back_ios
+        </mat-icon>
+    </button>
+    <div *ngFor="let produto of destaques | slice: inicio:final">
+      <div class="card">
+        <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.picture_url"></a>
+        <span class="nome">{{ produto.name }}</span>
+        <span class="valor">{{ produto.price  | currency : 'BRL'}}</span>
+        <button (click)="adicionarProduto(produto, 1)">
+          <img src="/assets/icons/sacola-de-compras.png">
+          <span>Adicionar à sacola</span>
+        </button>
+      </div>
+    </div>
+    <button *ngIf="this.final < this.destaques.length" class="seta-direita"
+    (click)="avancar()">
+    <mat-icon class="material-symbols-outlined">
+      arrow_forward_ios
+      </mat-icon></button>
+  </div>
+
 </section>
 

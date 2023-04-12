@@ -15,10 +15,7 @@ import { SacolaService } from 'src/app/services/sacola.service';
 export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
-    this.produtoService.criarProduto().subscribe(resposta => {
-      console.log(resposta)
-    }
-    )
+
   }
 
   produtosSacola: Sacola = {
@@ -80,8 +77,11 @@ export class HeaderComponent implements OnInit{
   pesquisar(busca: string) {
     this.pesquisa = true
     console.log("evento chamado")
+    this.router.navigateByUrl('home', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['pesquisa/' + busca]);
+    })
     this.produtoService.buscarPorNome(busca).subscribe(lista => {
-      this.produtosPesquisa = lista
+      this.produtosPesquisa = lista.products
     })
   }
 

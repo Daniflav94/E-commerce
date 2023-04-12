@@ -29,7 +29,7 @@ export class SacolaService {
       produto: {
         id: produto.id,
         name: produto.name,
-        resumo: produto.resumo,
+        resume: produto.resume,
         description: produto.description,
         price: produto.price,
         picture_url: produto.picture_url,

@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-compra.component';
 import { NgxMaskPipe, NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { CriarProdutoComponent } from './pages/adm/criar-produto/criar-produto.component';
 
 
 registerLocaleData(ptBr);
@@ -34,7 +35,8 @@ registerLocaleData(ptBr);
     CategoriasComponent,
     LancamentosComponent,
     PesquisaComponent,
-    FinalizarCompraComponent
+    FinalizarCompraComponent,
+    CriarProdutoComponent
   ],
   imports: [
     BrowserModule,

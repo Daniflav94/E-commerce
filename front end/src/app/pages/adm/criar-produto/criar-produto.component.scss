@@ -1,0 +1,133 @@
+nav{
+  height: 60px;
+  width: 100vw;
+  background-color: var(--nav);
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 3;
+
+  .logo{
+    width: 95px;
+    cursor: pointer;
+  }
+
+  ul{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  li{
+    list-style: none;
+
+  }
+
+}
+
+.container{
+  width: 100vw;
+  height: 85vh;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+
+  .erro{
+    font-size: 11px;
+    color: red;
+    margin-top: 5px;
+    white-space: nowrap;
+  }
+
+  .input-erro{
+    border: 1px solid red;
+    border-radius: 3px;
+    height: 10px;
+    padding: 10px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+  }
+
+  form{
+    margin: 20px auto;
+    width: 50%;
+
+    div{
+      display: flex;
+      flex-direction: column;
+
+      label, span{
+        font-size: 13px;
+        color: rgb(98, 98, 98);
+        margin-bottom: 4px;
+        margin-top: 20px
+      }
+
+      .input{
+        border: 1px solid rgb(223, 221, 221);
+        border-radius: 3px;
+        height: 10px;
+        padding: 10px;
+      }
+
+
+      input:focus{
+        outline: none;
+      }
+
+      select{
+        height: 32px;
+        border: 1px solid rgb(223, 221, 221);
+        border-radius: 3px;
+        color: gray;
+        padding: 5px;
+
+      }
+
+      option{
+        padding: 10px;
+
+      }
+
+      select:focus{
+        outline: none;
+      }
+    }
+
+    .dual-input{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      div{
+        width: 48%;
+      }
+    }
+  }
+
+  button{
+    width: 100%;
+    height: 35px;
+    background-color: var(--nav);
+    border: none;
+    color: white;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+  }
+}
