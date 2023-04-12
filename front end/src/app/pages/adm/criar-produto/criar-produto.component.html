@@ -44,7 +44,7 @@
     <div class="dual-input">
       <div>
         <label for="price">Preço</label>
-        <input type="text" name="price" mask="0*.00" placeholder="ex: 540.90" required formControlName="price"
+        <input type="number" name="price" placeholder="ex: 540.90" required formControlName="price"
           [ngClass]="[formProd.get('price')?.errors?.['required'] && formProd.get('price')?.touched? 'input-erro' : 'input']">
         <div class="erro"
           *ngIf="formProd.get('price')?.errors?.['required'] && formProd.get('price')?.touched">Campo

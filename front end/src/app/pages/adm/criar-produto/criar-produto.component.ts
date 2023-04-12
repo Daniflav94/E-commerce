@@ -47,15 +47,9 @@ export class CriarProdutoComponent {
 
   uploadFile(event: any){
     this.file = <File>event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (event: any) => {
-        this.fotoURL = event.target.result;
-        console.log(this.fotoURL)
-      }
-      reader.readAsDataURL(event.target.files[0]);
 
-    }
+        this.fotoURL = `assets/img/${this.file?.name}`
+        console.log(this.file?.name)
   }
 
 }

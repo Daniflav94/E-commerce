@@ -67,7 +67,7 @@ export class ProdutoService {
   }
 
   buscarPorId(id: number) {
-    return this.httpClient.get<Produto>(`${this.API}/${id}`).pipe(
+    return this.httpClient.get<Produto>(`${this.API}/core/${id}`).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY
@@ -103,7 +103,10 @@ export class ProdutoService {
   }
 
   buscarPorNome(pesquisa: string) {
-    return this.httpClient.get<Produto[]>(`${this.API}/${pesquisa}`).pipe(
+    const params = new HttpParams()
+      .set('skip', '0')
+      .set('take', '10')
+    return this.httpClient.get<ListaProdutos>(`${this.API}/core/search_products?name=${pesquisa}`, {params}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY
