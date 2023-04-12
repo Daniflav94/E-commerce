@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Produto } from 'src/app/interfaces/produto';
+import { NotificacaoService } from 'src/app/services/notificacao.service';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 
 @Component({
@@ -11,7 +14,11 @@ export class CriarProdutoComponent {
 
   formProd: FormGroup
 
-  constructor(fb: FormBuilder){
+  constructor(
+    fb: FormBuilder,
+    private produtoService: ProdutoService,
+    private notificacao: NotificacaoService
+    ){
     this.formProd = fb.group({
       name: ['', [Validators.required]],
       picture_url: ['', Validators.required],
@@ -27,18 +34,22 @@ export class CriarProdutoComponent {
   file?: File
 
   criarProduto(){
+    if(this.formProd.valid){
+      const produto: Produto = this.formProd.value
+      produto.picture_url = this.fotoURL
+      this.produtoService.criarProduto(produto).subscribe(() => {
+        this.notificacao.showmessage("Produto criado!")
+        this.formProd.reset()
+      })
+    }
 
   }
 
   uploadFile(event: any){
     this.file = <File>event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (event: any) => {
-        this.fotoURL = event.target.result;
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }
+
+        this.fotoURL = `assets/img/${this.file?.name}`
+        console.log(this.file?.name)
   }
 
 }

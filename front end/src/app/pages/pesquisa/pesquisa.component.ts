@@ -28,7 +28,8 @@ export class PesquisaComponent implements OnInit{
     if(busca){
       this.nomePesquisa = busca
       this.produtoService.buscarPorNome(busca).subscribe(lista => {
-        this.produtosPesquisa = lista
+        this.produtosPesquisa = lista.products
+        console.log(this.produtosPesquisa)
       })
     }
 
