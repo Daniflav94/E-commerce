@@ -129,7 +129,7 @@ class ClientsCards(AbstractBaseModel):
 class Products(AbstractBaseModel):
     name = models.CharField(max_length=200)
     picture_url = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(max_length=750)
+    description = models.TextField(max_length=1000)
     resume = models.CharField(max_length=350)
     category = models.ForeignKey('register.ProductCategory', on_delete=models.CASCADE, related_name='category_product')
     price = models.DecimalField(max_digits=8, decimal_places=2)
