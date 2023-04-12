@@ -10,6 +10,8 @@ def get_products(request, pk=None):
     skip = request.GET.get('skip')
     take = request.GET.get('take')
     
+    pk = request.GET.get('pk', None)
+    
     if skip and take:
         try:
             skip = int(skip)
@@ -22,10 +24,10 @@ def get_products(request, pk=None):
     
     if pk:
         all_products = Products.objects.get(pk=pk)
+        products = all_products.to_product_json()
     else:
         all_products = Products.objects.all()[skip:take + skip]
-    
-    products = [product.to_product_json() for product in all_products]
+        products = [product.to_product_json() for product in all_products]
     
     return JsonResponse({
         'products': products,
