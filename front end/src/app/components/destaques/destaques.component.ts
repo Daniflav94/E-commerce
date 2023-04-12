@@ -23,7 +23,6 @@ export class DestaquesComponent implements OnInit{
     this.listarProdutos()
   }
 
-
   listarProdutos():void {
     this.produtoService.listarProdutos().subscribe(lista => {
       this.destaques = lista.products
@@ -37,6 +36,7 @@ export class DestaquesComponent implements OnInit{
 
   inicio: number = 0
   final: number = 4
+
 
   destaques: Produto[] = []
 
