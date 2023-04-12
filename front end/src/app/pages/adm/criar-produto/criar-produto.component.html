@@ -54,10 +54,10 @@
         <span>Categoria</span>
         <select formControlName="category" required
           [ngClass]="[formProd.get('category')?.errors?.['required'] && formProd.get('category')?.touched? 'input-erro' : 'select']">
-          <option value="teclados">Teclados</option>
-          <option value="mouses">Mouses</option>
-          <option value="webcams">Webcams</option>
-          <option value="audio">Áudio</option>
+          <option value="1">Teclados</option>
+          <option value="2">Mouses</option>
+          <option value="3">Webcams</option>
+          <option value="4">Áudio</option>
         </select>
       </div>
 

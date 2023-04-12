@@ -38,6 +38,22 @@ h2 {
   opacity: 1;
 }
 
+.cards{
+  display: flex;
+  width: 100%;
+
+  button{
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+
+  }
+}
+
 .card {
   height: 450px;
   display: flex;

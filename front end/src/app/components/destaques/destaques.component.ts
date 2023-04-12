@@ -35,7 +35,24 @@ export class DestaquesComponent implements OnInit{
     this._sacolaService.adicionarProduto(produto, quantidade)
   }
 
+  inicio: number = 0
+  final: number = 4
+
   destaques: Produto[] = []
+
+  voltar() {
+    if (this.inicio != 0 && this.final != 4) {
+      this.inicio -= 4
+      this.final -= 4
+    }
+  }
+
+  avancar() {
+    if (this.final < this.destaques.length) {
+      this.inicio += 4
+      this.final += 4
+    }
+  }
     /* {
       id: 1,
       name: "Teclado sem fio Logitech K480",
