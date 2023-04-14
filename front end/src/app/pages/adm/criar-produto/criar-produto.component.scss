@@ -67,8 +67,15 @@ nav{
     margin: 20px auto;
     width: 50%;
 
-    img{
-      margin: 30px auto;
+    .file{
+      div{
+        width: 100% ;
+      }
+
+      img{
+        width: 50%;
+        margin: 10px auto
+      }
     }
 
     div{

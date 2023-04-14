@@ -239,7 +239,7 @@ export class DestaquesComponent implements OnInit{
     {
       id: 16,
       name: "Teclado Mecânico Gamer Logitech G413 TKL SE - Preto",
-      resumo: "Teclado Mecânico Gamer Logitech G413 TKL SE - Preto",
+      resumo: "Layout ABNT2, Iluminação Branca e Teclas Mecânicas Tactile, Anti-ghosting, Compatível com Windows, macOS",
       description: "Melhore sua experiência de jogo com o Teclado Mecânico Gamer Logitech G413 TKL SE. Proporcionando uma experiência de jogo aprimorada com switch mecânico, ele foi projetado para ajudar os jogadores a terem um desempenho superior e a se esforçarem ainda mais. O G413 TKL SE possui switches mecânicos tactile; teclas PBT; 6 teclas de desempenho anti-ghosting; um top case de alumínio escovado em preto com iluminação LED branca; 12 teclas FN e tecnologia com fio USB - tudo ao seu alcance. Disponível também na versao padrão com 104 teclas. As primeiras características do jogo são as que você precisa para colocar um desempenho melhor ao seu alcance. Um teclado projetado para performance. Um teclado Made for Play.",
       price: 549.90,
       picture_url: "assets/img/teclado1-1.png",

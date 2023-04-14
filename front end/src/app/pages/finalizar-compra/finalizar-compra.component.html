@@ -274,7 +274,7 @@
     </div>
     <div class="produtos">
       <div class="produto" *ngFor="let produto of produtosSacola.produtos">
-        <img [src]="produto.produto.picture_url[0]">
+        <img [src]="produto.produto.picture_url">
         <div class="infos">
           <span class="nome">{{produto.produto.name}}</span>
           <div class="qnt">

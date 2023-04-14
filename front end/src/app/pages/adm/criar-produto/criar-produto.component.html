@@ -32,12 +32,14 @@
         *ngIf="formProd.get('description')?.errors?.['required'] && formProd.get('description')?.touched">Campo
         obrigatório.</div>
     </div>
-    <div>
-      <label for="picture_url">Foto principal</label>
-      <input #imageInput type="file" accept="image/*" name="picture_url" required formControlName="picture_url" class="input-foto" (change)="uploadFile($event)">
-      <div class="erro"
-        *ngIf="formProd.get('picture_url')?.errors?.['required'] && formProd.get('picture_url')?.touched">Campo
-        obrigatório.
+    <div class="file">
+      <div>
+        <label for="picture_url">Foto principal</label>
+        <input #imageInput type="file" accept="image/*" name="picture_url" required formControlName="picture_url" class="input-foto" (change)="uploadFile($event)">
+        <div class="erro"
+          *ngIf="formProd.get('picture_url')?.errors?.['required'] && formProd.get('picture_url')?.touched">Campo
+          obrigatório.
+        </div>
       </div>
       <img [src]="fotoURL" width="200px">
     </div>
