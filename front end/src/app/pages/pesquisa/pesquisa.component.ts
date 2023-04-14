@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/interfaces/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { SacolaService } from 'src/app/services/sacola.service';
 
 @Component({
   selector: 'app-pesquisa',
@@ -17,6 +18,7 @@ export class PesquisaComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private produtoService: ProdutoService,
+    private _sacolaService: SacolaService
   ){}
 
   @Input() produtosPesquisa: Produto[] = []
@@ -33,5 +35,9 @@ export class PesquisaComponent implements OnInit{
       })
     }
 
+  }
+
+  adicionarProduto(produto: Produto, quantidade: number) {
+    this._sacolaService.adicionarProduto(produto, quantidade)
   }
 }

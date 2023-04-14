@@ -5,6 +5,7 @@ import { Produto } from '../interfaces/produto';
 import { Categoria } from '../interfaces/categoria';
 import { API_URL } from 'src/config';
 import { ListaProdutos } from '../interfaces/listaProdutos';
+import { ProdutoAPI } from '../interfaces/produto-api';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,7 @@ export class ProdutoService {
   listarProdutos() {
     const params = new HttpParams()
       .set('skip', '0')
-      .set('take', '10')
+      .set('take', '30')
     return this.httpClient.get<ListaProdutos>(`${this.API}/core/get_products`, {params}).pipe(
       catchError(error => {
         console.error(error)
@@ -67,7 +68,7 @@ export class ProdutoService {
   }
 
   buscarPorId(id: number) {
-    return this.httpClient.get<Produto>(`${this.API}/core/${id}`).pipe(
+    return this.httpClient.get<ProdutoAPI>(`${this.API}/core/get_products?pk=${id}`).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY

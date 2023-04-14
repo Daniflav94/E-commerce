@@ -9,7 +9,7 @@
             <a [routerLink]="'/produto/' + produto.id"><img [src]="produto.picture_url"></a>
             <span class="nome">{{ produto.name }}</span>
             <span class="valor">{{ produto.price  | currency : 'BRL'}}</span>
-            <button>
+            <button (click)="adicionarProduto(produto, 1)">
               <img src="/assets/icons/sacola-de-compras.png">
               <span>Quero Comprar</span>
             </button>

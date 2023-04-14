@@ -3,7 +3,10 @@
     <div class="container">
   <span class="caminho">
     /
-    <span>{{produto.category}}</span>
+    <span *ngIf="produto.category == '1'">Teclados</span>
+    <span *ngIf="produto.category == '2'">Mouses</span>
+    <span *ngIf="produto.category == '3'">Webcams</span>
+    <span *ngIf="produto.category == '4'">Áudio</span>
     /
     <strong> {{produto.name}}</strong>
   </span>
@@ -12,10 +15,9 @@
       <img [src]="foto" alt="" class="foto-principal">
       <div class="outras-fotos">
         <img [src]="produto.picture_url" (click)="trocarFoto(produto.picture_url)" [ngClass]="{'ativa': foto != produto.picture_url}">
-        <img [src]="picture_url[0]" (click)="trocarFoto(picture_url[0])"[ngClass]="{'ativa': foto != picture_url[0]}">
-        <img [src]="picture_url[1]" (click)="trocarFoto(picture_url[1])"[ngClass]="{'ativa': foto != picture_url[1]}">
-        <img *ngIf="picture_url[2]" [src]="picture_url[2]" (click)="trocarFoto(picture_url[2])"[ngClass]="{'ativa': foto != picture_url[2]}">
-        <img *ngIf="picture_url[3]" [src]="picture_url[3]" (click)="trocarFoto(picture_url[3])"[ngClass]="{'ativa': foto != picture_url[3]}">
+        <img *ngIf="picture_url[0] != null" [src]="picture_url[0]" (click)="trocarFoto(picture_url[0])"[ngClass]="{'ativa': foto != picture_url[0]}">
+        <img *ngIf="picture_url[1]" [src]="picture_url[1]" (click)="trocarFoto(picture_url[1])"[ngClass]="{'ativa': foto != picture_url[1]}">
+
       </div>
     </section>
     <section class="infos">
