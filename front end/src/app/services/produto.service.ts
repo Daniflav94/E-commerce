@@ -58,7 +58,7 @@ export class ProdutoService {
     const params = new HttpParams()
       .set('skip', '0')
       .set('take', '10')
-    return this.httpClient.get<ListaProdutos>(`${this.API}/core/get_products?pk=1`, {params}).pipe(
+    return this.httpClient.get<ListaProdutos>(`${this.API}/core/get_products`, {params}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY
@@ -93,8 +93,8 @@ export class ProdutoService {
     )
   }
 
-  listarPorCategoria(categoria: string) {
-    return this.httpClient.get<Produto[]>(`${this.API}/${categoria}`).pipe(
+  listarPorCategoria(categoria: number) {
+    return this.httpClient.get<ListaProdutos>(`${this.API}/core/search_products?category=${categoria}`).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY
@@ -106,7 +106,7 @@ export class ProdutoService {
     const params = new HttpParams()
       .set('skip', '0')
       .set('take', '10')
-    return this.httpClient.get<ListaProdutos>(`${this.API}/core/search_products?name=${pesquisa}`, {params}).pipe(
+    return this.httpClient.get<ListaProdutos>(`${this.API}/core/search_products?search=${pesquisa}`, {params}).pipe(
       catchError(error => {
         console.error(error)
         return EMPTY

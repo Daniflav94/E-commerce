@@ -6,29 +6,39 @@ import { ProdutoService } from 'src/app/services/produto.service';
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.scss']
+  styleUrls: ['./categorias.component.scss'],
 })
-export class CategoriasComponent implements OnInit{
-
+export class CategoriasComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private produtoService: ProdutoService
-  ){}
+  ) {}
 
   ngOnInit(): void {
-    //this.inicializarCategoria()
+    this.inicializarCategoria()
   }
 
-  produtos: Produto[] = []
+  produtos: Produto[] = [];
 
-  /* inicializarCategoria():void {
-    const categoria  = this.route.snapshot.params["categoria"]
-    console.log(categoria)
-    this.produtoService.listarPorCategoria(categoria).subscribe(lista => {
-      this.produtos = lista
-    })
-  } */
-
-
-
+  inicializarCategoria(): void {
+    const categoria = this.route.snapshot.params['categoria'];
+    console.log(categoria);
+    if (categoria === 'teclados') {
+      this.produtoService.listarPorCategoria(1).subscribe((lista) => {
+        this.produtos = lista.products;
+      });
+    } else if (categoria === 'mouses') {
+      this.produtoService.listarPorCategoria(2).subscribe((lista) => {
+        this.produtos = lista.products;
+      });
+    } else if (categoria === 'webcams') {
+      this.produtoService.listarPorCategoria(3).subscribe((lista) => {
+        this.produtos = lista.products;
+      });
+    } else if (categoria === 'audio') {
+      this.produtoService.listarPorCategoria(4).subscribe((lista) => {
+        this.produtos = lista.products;
+      });
+    }
+  }
 }
