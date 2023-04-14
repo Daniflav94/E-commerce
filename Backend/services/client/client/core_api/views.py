@@ -78,6 +78,7 @@ def get_products_category(request):
 @csrf_exempt
 def search_products(request):
     if request.method == 'GET':
+        category = request.GET.get('category', None)
         skip = request.GET.get('skip', None)
         take = request.GET.get('take', None)
 
@@ -86,13 +87,17 @@ def search_products(request):
                 skip = int(skip)
                 take = int(take) + skip
             except ValueError:
-                return JsonResponse({'message': 'Erro ao consultar áreas \
-                    de abrangência.', 'status': 400}, status=400)
+                return JsonResponse({'message': 'Erro ao consultar produtos', \
+                    'status': 400}, status=400)
         else:
             skip = 0
             take = 999999999
-            
+        
         filters = {}
+            
+        if category:
+            filters['category'] = category
+            
         if request.GET.get('search'):
             filters['name__unaccent__icontains'] = request.GET.get('search')
             

@@ -62,14 +62,16 @@ h2 {
   margin-right: 10px;
   box-shadow: none;
   box-sizing: border-box;
-  
+
   border: none;
   border-radius: 0;
   position: inherit;
 
 
   img {
-    width: 320px;
+    width: 290px;
+    height: 250px;
+    object-fit: contain;
     cursor: pointer;
   }
 
