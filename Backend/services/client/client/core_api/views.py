@@ -1,9 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpRequest
 from django.db.models import Count
+import json
 
 from client.register.models import *
-from .forms import ShoppingCartForm
+from .forms import ShoppingCartForm, ClientsForm
 
 @csrf_exempt
 def get_products(request, pk=None):
@@ -138,3 +139,65 @@ def add_product_shoping_cart(request):
         else:
             print(form.errors)
             return JsonResponse({'message': 'Erro form', 'status': 404})
+
+@csrf_exempt
+def create_client(request):
+    data = request.POST.copy()
+    print(data['email'])
+
+    if Clients.objects.filter(email=data['email']).exists():
+        return JsonResponse({'message': 'Email já cadastrado', 'status': 400})
+    else:
+        form = ClientsForm(data=data)
+
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'message': 'Cliente cadastrado com sucesso', 'status': 200})
+        else:
+            return JsonResponse({'message': f'Erro ao salvar cliente {form.errors}', 'status': 404})
+
+    return JsonResponse({'message': 'Informações incorretas', 'status': 404}) 
+
+@csrf_exempt
+def add_product_car(request):
+    products_ids = json.loads(request.POST.get('products_ids', []))
+    print(products_ids)
+
+    data = {}
+    for product in products_ids:
+        print(product)
+        if product['selected'] == 'true' or product['selected'] == 'True':
+            product['selected'] = True
+        else:
+            product['selected'] = False
+
+        if Shopping_Cart.objects.filter(product=product['product']).exists():
+            try:
+                product_cart = Shopping_Cart.objects.filter(product=product['product']).first()
+                
+                form = ShoppingCartForm(instance=product_cart, data=product)
+
+                if form.is_valid:
+                    form.save()
+                else:
+                    return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
+                
+            except Shopping_Cart.DoesNotExist:
+                form = ShoppingCartForm(data=product)
+
+                if form.is_valid:
+                    form.save()
+                    return JsonResponse({'message': 'Itens adicionados com sucesso', 'status': 200})
+                else:
+                    return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
+        else:
+            product['product'] = int(product['product'])
+            form = ShoppingCartForm(data=product)
+
+            if form.is_valid:
+                form.save()
+            else:
+                return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
+                
+
+    return JsonResponse({'message': 'Itens adicionados com sucesso', 'status': 200})

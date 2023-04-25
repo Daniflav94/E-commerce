@@ -81,14 +81,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Clients',
             fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='consumer_name', serialize=False, to='register.user')),
                 ('full_name', models.CharField(max_length=250)),
+                ('email', models.EmailField(max_length=60)),
                 ('picture_url', models.CharField(blank=True, max_length=200, null=True)),
                 ('cpf', models.CharField(max_length=15)),
-                ('alias', models.CharField(blank=True, max_length=200)),
-                ('whatsapp', models.CharField(max_length=15)),
+                ('phone', models.CharField(max_length=15)),
                 ('birthday', models.DateField(blank=True, null=True)),
                 ('gender', models.CharField(choices=[('male', 'Masculino'), ('female', 'Feminino'), ('other', 'Outro')], default='other', max_length=6)),
                 ('cep', models.CharField(blank=True, max_length=9, null=True)),

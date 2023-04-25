@@ -46,16 +46,12 @@ class Clients(AbstractBaseModel):
         (GENDER_FEMALE, "Feminino"),
         (GENDER_OTHER, "Outro"),
     )
-    user = models.OneToOneField('register.User',
-                                on_delete=models.CASCADE,
-                                primary_key=True,
-                                related_name='consumer_name')
 
     full_name = models.CharField(max_length=250)
+    email = models.EmailField(max_length=50)
     picture_url = models.CharField(max_length=200, null=True, blank=True)
     cpf = models.CharField(max_length=15)
-    alias = models.CharField(max_length=200, blank=True)
-    whatsapp = models.CharField(max_length=15)
+    phone = models.CharField(max_length=15)
     birthday = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=6,
                                 choices=GENDER_CHOICES,
@@ -74,10 +70,10 @@ class Clients(AbstractBaseModel):
         return {
             '_id': self.pk,
             'name': self.full_name,
+            'email': self.email,
             'image': self.picture_url,
             'cpf': self.cpf,
-            'alias': self.alias,
-            'phone': self.whatsapp,
+            'phone': self.phone,
             'birthday': self.birthday,
             'gender': self.gender,
             'cep': self.cep,
