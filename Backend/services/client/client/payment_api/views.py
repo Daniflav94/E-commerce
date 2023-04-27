@@ -8,7 +8,7 @@ import base64
 import json
 from gerencianet import Gerencianet
 
-from client.public_api.decorators import user_authenticate, company_autentication
+from client.adm_api.decorators import user_authenticate, company_autentication
 from .utils import _headers, txid_generator, generate_key_pix, validation_gn_keys, save_pix
 from client.register.models import Shopping_Cart
 
