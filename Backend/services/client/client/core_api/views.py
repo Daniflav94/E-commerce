@@ -1,10 +1,61 @@
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpRequest
+from django.contrib.auth import authenticate
+from django.http import JsonResponse
+from django.utils import timezone
 from django.db.models import Count
 import json
 
+from .utils import _create_token
 from client.register.models import *
 from .forms import ShoppingCartForm, ClientsForm
+
+@csrf_exempt
+def login(request):
+    user_email = request.POST.get('email', None)
+    password = request.POST.get('password', None)
+    type_user = request.POST.get('type', None)
+
+    if user_email and password:
+        user = authenticate(username=user_email, password=password, email=user_email)
+        if user is not None:
+            if user.is_consumer and user.is_company:
+                _type = 'consumer_company'
+            elif user.is_consumer and not user.is_company and not user.is_staff:
+                _type = 'consumer'
+                full_name = user.consumer_name.full_name
+                picture_url = user.consumer_name.picture_url
+            elif user.is_company and not user.is_consumer:
+                _type = 'company'
+                full_name = user.company_name.public_name
+                picture_url = user.company_name.picture_url
+            elif user.is_staff:
+                _type = 'staff'
+                full_name = user.consumer_name.full_name
+                picture_url = user.consumer_name.picture_url
+            else:
+                _type = ''
+
+            if _type == type_user:
+                session_token = _create_token(user)
+                user.last_login = timezone.now()
+                user.save()
+
+                return JsonResponse({
+                    '_id': user.id,
+                    '_token': session_token,
+                    'type': _type,
+                    'full_name': full_name,
+                    'picture_url': picture_url,
+                    'message': 'Login efetuado com sucesso.',
+                    'status': 200
+                })
+            else: 
+                return JsonResponse({'message':'Usuário ou senha inválidos.', 'status': 400})
+
+        else:
+            return JsonResponse({'message':'Usuário ou senha inválidos.', 'status': 400})
+    else:
+        return JsonResponse({'message':'Usuário ou senha inválidos.', 'status': 400})
 
 @csrf_exempt
 def get_products(request, pk=None):
