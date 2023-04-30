@@ -85,6 +85,11 @@ class Clients(AbstractBaseModel):
             'card': self.card
         }
 
+    def id_to_json(self):
+        return {
+            '_id': self.pk,
+        }
+
 class ClientsCards(AbstractBaseModel):
 
     MASTER_CARD = "mastercard"
@@ -173,7 +178,7 @@ class Shopping_Cart(AbstractBaseModel):
         amount_item = self.amount - 1
         return amount_item
 
-    #client = models.ForeignKey('register.Clients', null=True, on_delete=models.CASCADE, related_name='shopping_client')
+    client = models.ForeignKey('register.Clients', null=True, on_delete=models.CASCADE, related_name='shopping_client')
     product = models.ForeignKey('register.Products', null=True, on_delete=models.SET_NULL, related_name='shopping_products')
     amount = models.IntegerField()
     selected = models.BooleanField()

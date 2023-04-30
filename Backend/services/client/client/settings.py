@@ -21,6 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+DEV_CLIENT_KEY = config('DEV_CLIENT_KEY', default=None)
+DEV_SECRET_KEY = config('DEV_SECRET_KEY', default=None)
+CERT_DEV = config('CERT_DEV', default=None)
+GN_BASE_URL = config('GN_BASE_URL', default=None)
+PATH_CREDENTIALS = config('PATH_CREDENTIALS', default=None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)

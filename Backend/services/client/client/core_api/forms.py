@@ -6,7 +6,7 @@ class ShoppingCartForm(forms.ModelForm):
 
     class Meta:
         model = Shopping_Cart
-        fields = ['product', 'amount', 'selected']
+        fields = ['product', 'amount']
 
 class ClientsForm(forms.ModelForm):
 

@@ -6,6 +6,7 @@ import random
 
 from gerencianet import Gerencianet
 from django.conf import settings
+from client.register.models import Clients
 
 def get_token_api_payment():
     credentials = {
@@ -63,3 +64,82 @@ def generate_key_pix():
 
 def txid_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
+
+def pix_payment(client_id, shopping_cart, total, name_information="Campo adicional", additional_information="Informação adicional"):
+    clients = Clients.objects.filter(pk=client_id)
+    client = [info.to_json() for info in clients]
+
+    headers = _headers()
+    certificado = f'client/payment_api/certificates/{settings.CERT_DEV}'
+
+    url = f'{settings.GN_BASE_URL}/v2/cob'
+    payload = json.dumps({
+    "calendario": {
+        "expiracao": 3600
+    },
+    "devedor": {
+        "cpf": client[0]['cpf'],
+        "nome": client[0]['name']
+    },
+    "valor": {
+        "original": str(total)
+    },
+    "chave": "e63a6451-ec39-450a-aaac-6310baaa25e7",
+    "solicitacaoPagador": "Informe o número ou identificador do pedido."
+    })
+
+    response = requests.request("POST", url, headers=headers, data=payload, cert=certificado)
+    
+    #save_pix(response.json(), request.user.pk, company)
+
+    return response.json()
+
+def generate_qr_code(loc_id):
+
+    headers = _headers()
+    certificate = f'{settings.PATH_CREDENTIALS}{settings.CERT_DEV}'
+
+    if loc_id:
+        url = url = f"{settings.GN_BASE_URL}/v2/loc/{loc_id}/qrcode"
+    else:
+        return 'Informe o id de localização da cobrança'
+
+    response = requests.request("GET", url, headers=headers, data={}, cert=certificate)
+    qrcode = response.json()
+
+    return qrcode['imagemQrcode']
+
+def pix_revision(txid):
+
+    headers = _headers()
+    certificado = f'{settings.PATH_CREDENTIALS}{settings.CERT_DEV}'
+
+    if txid:
+        url = f'{settings.GN_BASE_URL}/v2/cob/{txid}'
+    else:
+        return 'Informe o localizador da cobrança'
+
+    payload = json.dumps({
+            "calendario": {
+                "expiracao": 600
+            },
+            "devedor": {
+                "nome": "Fukuma",
+                "cpf": "70921227086"
+            },
+            "valor": {
+                "original": "3000.00"
+            },
+            "chave": "03659197050",
+            "solicitacaoPagador": "Informe o número ou identificador do pedido.",
+            "infoAdicionais": [
+                {
+                "nome": "Campo 1",
+                "valor": "valor 1"
+                }
+            ]
+            })
+
+    response = requests.request("PATCH", url, headers=headers, data=payload, cert=certificado)
+
+    return response
