@@ -8,6 +8,7 @@ import json
 from .utils import _create_token
 from client.register.models import *
 from .forms import ShoppingCartForm, ClientsForm
+from client.payment_api.utils import pix_payment, generate_qr_code
 
 @csrf_exempt
 def login(request):
@@ -194,10 +195,11 @@ def add_product_shoping_cart(request):
 @csrf_exempt
 def create_client(request):
     data = request.POST.copy()
-    print(data['email'])
 
-    if Clients.objects.filter(email=data['email']).exists():
-        return JsonResponse({'message': 'Email já cadastrado', 'status': 400})
+    if Clients.objects.filter(cpf=data['cpf']).exists():
+        client_id = Clients.objects.filter(cpf=data['cpf'])
+        client = [id.id_to_json() for id in client_id]
+        return JsonResponse({'client': client, 'status': 200})
     else:
         form = ClientsForm(data=data)
 
@@ -211,44 +213,25 @@ def create_client(request):
 
 @csrf_exempt
 def add_product_car(request):
-    products_ids = json.loads(request.POST.get('products_ids', []))
-    print(products_ids)
+    client_id = request.POST.get('client_id', None)
+    shopping_cart = json.loads(request.POST.get('shopping_cart', []))
+    total = request.POST.get('total', 0)
+    type_payment = request.POST.get('type_payment', None)
+    name_information = request.POST.get('name_information', '')
+    additional_information = request.POST.get('additional_information', '')
+    #payment = json.loads(request.POST.get('payment', []))
+    qrcode = request.POST.get('qrcode', False)
 
-    data = {}
-    for product in products_ids:
-        print(product)
-        if product['selected'] == 'true' or product['selected'] == 'True':
-            product['selected'] = True
-        else:
-            product['selected'] = False
+    if type_payment == 'pix' or type_payment == 'Pix':
+        pix = pix_payment(client_id, shopping_cart, total, name_information, additional_information)
+        if qrcode == 'True' or qrcode == 'true':
+            loc_id = pix['loc']['id']
+            code = generate_qr_code(loc_id)
+            return JsonResponse({'message': code, 'status': 200})
+        return JsonResponse({'message': pix, 'status': 200})
 
-        if Shopping_Cart.objects.filter(product=product['product']).exists():
-            try:
-                product_cart = Shopping_Cart.objects.filter(product=product['product']).first()
-                
-                form = ShoppingCartForm(instance=product_cart, data=product)
+    if type_payment == 'qrcode' and loc_id:
+        qrcode = generate_qr_code(loc_id)
+        return JsonResponse({'message': qrcode, 'status': 200})
 
-                if form.is_valid:
-                    form.save()
-                else:
-                    return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
-                
-            except Shopping_Cart.DoesNotExist:
-                form = ShoppingCartForm(data=product)
-
-                if form.is_valid:
-                    form.save()
-                    return JsonResponse({'message': 'Itens adicionados com sucesso', 'status': 200})
-                else:
-                    return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
-        else:
-            product['product'] = int(product['product'])
-            form = ShoppingCartForm(data=product)
-
-            if form.is_valid:
-                form.save()
-            else:
-                return JsonResponse({'message': 'Erro ao adicionar itens no carrinho', 'status': 404})
-                
-
-    return JsonResponse({'message': 'Itens adicionados com sucesso', 'status': 200})
+    return JsonResponse({'message': pix, 'status': 200})

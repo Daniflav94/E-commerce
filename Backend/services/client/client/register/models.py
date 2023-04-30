@@ -85,6 +85,11 @@ class Clients(AbstractBaseModel):
             'card': self.card
         }
 
+    def id_to_json(self):
+        return {
+            '_id': self.pk,
+        }
+
 class ClientsCards(AbstractBaseModel):
 
     MASTER_CARD = "mastercard"

@@ -1,7 +1,6 @@
 import hashlib
 import time
 import random
-
 from client.register.models import *
 
 def _create_token(user):
@@ -13,3 +12,4 @@ def _create_token(user):
     user_session = UserSession(user=user, session_token=session_token)
     user_session.save()
     return session_token
+
